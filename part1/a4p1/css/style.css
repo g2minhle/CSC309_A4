@@ -1,0 +1,15 @@
+.navbar {
+    border-radius: 0;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.tab-pane {
+    padding-top: 1%;
+}
