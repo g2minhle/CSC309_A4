@@ -2,8 +2,11 @@
 
 <head>
     <meta charset="utf-8">
-    <link href="./css/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -34,10 +37,41 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <h2 class="form-signin-heading">Sign up a new account</h2>
-                                    <label for="inputEmail" class="sr-only">Username</label>
-                                    <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
-                                    <label for="inputPassword" class="sr-only">Password</label>
-                                    <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                                    <div class="row sign-up-item">
+                                        <div class="col-xs-12">
+                                            <label for="inputEmail" class="sr-only">First name</label>
+                                            <input id="inputEmail" class="form-control" placeholder="First name" required="" autofocus="" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="row sign-up-item">
+                                        <div class="col-xs-12">
+                                            <label for="inputEmail" class="sr-only">Last name</label>
+                                            <input id="inputEmail" class="form-control" placeholder="Last name" required="" autofocus="" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="row sign-up-item">
+                                        <div class="col-xs-10">
+                                            <label for="inputEmail" class="sr-only">Your location</label>
+                                            <input id="inputEmail" class="form-control" placeholder="Your location" required="" autofocus="" type="email">
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <a class="btn btn-primary btn-md">
+                                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row sign-up-item">
+                                        <div class="col-xs-12">
+                                            <label for="inputEmail" class="sr-only">Email</label>
+                                            <input id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="row sign-up-item">
+                                        <div class="col-xs-12">
+                                            <label for="inputPassword" class="sr-only">Password</label>
+                                            <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
