@@ -17,3 +17,40 @@
 .sign-up-item{
     padding-top: 5px;
 }
+
+.trainer_bio {
+	margin-top: 20px;
+	padding: 20px;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+}
+
+.profile_img {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.profile_center > ul {
+	list-style-type: none;
+}
+
+.profile_center > ul > li {
+	padding-bottom: 5px;
+}
+
+.font-bold {
+	font-weight: bold;
+}
+
+.font-italic {
+	font-style: italic;
+}
+
+.profile_right {
+	text-align: center;
+}
+
+.profile_right > h1 {
+	margin:8px;
+}
