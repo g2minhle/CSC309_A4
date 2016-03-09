@@ -326,3 +326,7 @@
 	width: 60%;
 	position: absolute;
 }
+.font-bold-centre{
+	font-weight: bold;
+	text-align: center;
+}
