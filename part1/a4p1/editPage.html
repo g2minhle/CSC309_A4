@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head lang = "en">
-		<meta charset="UTF-8">
-			<title>
-			Fitness Connection:Edit Profile
-			</title>
-		 <meta charset="utf-8">
-	    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	    <link href="./css/style.css" rel="stylesheet">
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
-	</head>
-	<body>
-	<nav class="navbar navbar-inverse">
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>
+        Fitness Connection:Edit Profile
+    </title>
+    <meta charset="utf-8">
+    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
@@ -24,112 +26,196 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="./index.html" class="navbar-brand" href="#">Fitness Connection</a>
-                    <form class="navbar-form navbar-left search-form" role="search">
-                        <input type="text" class="form-control search-box" placeholder="crossfit">
-                        <a href="./searchResults.html" type="submit" class="btn btn-default">Search</a>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./editPage.html">
+                <form class="navbar-form navbar-left search-form" role="search">
+                    <input type="text" class="form-control search-box" placeholder="crossfit">
+                    <a href="./searchResults.html" type="submit" class="btn btn-default">Search</a>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="./editPage.html">
                                 My Account
                                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="./landingPage.html">
+                    </li>
+                    <li>
+                        <a href="./landingPage.html">
                                 Sign Out
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                             </a>
-                        </li>
-                    </ul>
+                    </li>
+                </ul>
             </div>
             <!--/.navbar-collapse -->
         </div>
     </nav>
-    <div class ="profilePicEdit">
-    	<img class="img-circle profile_img" src="images/default_profile.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-2">
+                <img class="img-circle profile_img" src="images/default_profile.jpg">
+            </div>
+            <div class="col-xs-3">
+                <button type="button" class="btn btn-primary btn-block">Change Profile Photo</button>
+                <button type="button" class="btn btn-primary  btn-block">Save Changes</button>
+            </div>
+            <div class="col-xs-7">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <b>Given Name</b>
+                        <input class="form-control" placeholder="Given Name">
+                    </div>
+                    <div class="col-xs-6">
+                        <b>Family Name</b>
+                        <input class="form-control" placeholder="Family Name">
+                    </div>
+                    <div class="col-xs-6">
+                        <b>Sport</b>
+                        <input class="form-control" placeholder="Sport">
+                    </div>
+                    <div class="col-xs-6">
+                        <b>Location</b>
+                        <input class="form-control" placeholder="Location">
+                    </div>
+                    <p></p>
+                    <div class="col-xs-12">
+                        <b>Experience:</b>
+                        <textarea type="text" class="form-control" name="experience">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <b>Resume</b>
+                <textarea type="text" class="form-control" name="Resume"></textarea>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2> Availability: </h2>
+            </diV>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Monday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Tuesday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+            <hr/>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Wednesday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+            <hr/>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Thrusday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+            <hr/>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Friday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+            <hr/>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Saturday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+            <hr/>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="col-xs-2">
+                    <h3>Sunday</h3>
+                </diV>
+                <div class="col-xs-5">
+                    <b>From</b>
+                    <input class="form-control">
+                </diV>
+                <div class="col-xs-5">
+                    <b>To</b>
+                    <input class="form-control">
+                </diV>
+            </diV>
+            <hr/>
+        </div>
     </div>
-    <div class ="updateProfilePic">
-    	<button type ="button" class="pic_button"><span class="font-bold">Click Here To Change Profile Photo </span></button>
-    </div>
-    <div class ="buttonSaveChanges">
-    	<button type ="button" class="save_button"><span class="font-bold">Save Changes</span></button>
-    </div>
-    <div class="formInput">
-    <form>
-    	<span class="font-bold">
-  		Given Name:</span><br>
-  		<input type="text" class ="formBasic" name="givenName">
-  		<br>
-  		<span class="font-bold">
-  		Family Name:</span>
-  		<br>
-  		<input type="text" class ="formBasic" name="familyName">
-  		<br>
-  		<span class="font-bold">
-  		Experience:<br>
-  	</span>
-  		<input type="text" class ="formExperience" name="experience">
-  		<br>
-	</form>
-	</div>
-	<div class ="updateResume">
-    	<button type="button" class="resume_button"><span class="font-bold">Click Here To Upload/Update Your Resume</span></button>
-    </div>
-    <div class ="updateAvailability">
-    	<h4> Availability: </h4>
-    	<form>
-    	<span class="font-bold">
-  		Monday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-  		<span class="font-bold">
-  		Tuesday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-  		<span class="font-bold">
-  		Wednesday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-  		<span class="font-bold">
-  		Thursday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-  		<span class="font-bold">
-  		Friday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-  		<span class="font-bold">
-  		Saturday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-  		<span class="font-bold">
-  		Sunday:<br>
-  		<input type="text" name="avail" class ="formBasic2">
-  		To
-  		<input type="text" name="avail" class ="formBasic2">
-  		<br>
-  		</span>
-	</form>
-    </div>
-	</body>
+</body>
 
 </html>
