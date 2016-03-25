@@ -5,15 +5,14 @@ ReactDOM = require('react-dom'),
 LandingBackground = require('./landingBackground'),
 LandingPageGreeting = require('./landingPageGreeting'),
 SignInModal = require('./signInModal'),
+SignUpModal = require('./signUpModal'),
 
 Index = React.createClass({
     openSignInModal: function (e) {
-        $('#signInModal').modal(); 
         $('#signInModal').modal('show');
     },
     openSignUpModal: function (e) {
-        $('#signUpForm').modal(); 
-        $('#signUpForm').modal('show');
+        $('#signUpModal').modal('show');
     },
     render: function() {  return (
         <div>
@@ -23,6 +22,7 @@ Index = React.createClass({
                 openSignUpModal={this.openSignUpModal}
             />
             <SignInModal id="signInModal" />
+            <SignUpModal id="signUpModal" />            
         </div>
     ); }
 });
