@@ -46,6 +46,7 @@ function routersForErrorHandlers(app) {
 function routersForStatics(app) {
     app.use('/statics', require('less-middleware')(path.join(__dirname, '../views/statics')));
     app.use('/statics', express.static(path.join(__dirname, '../views/statics')));
+    app.use('/build', express.static(path.join(__dirname, '../views/build')));
 }
 
 module.exports = {
