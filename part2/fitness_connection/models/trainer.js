@@ -10,6 +10,15 @@ var trainerSchema = mongoose.Schema({
         location: [String],
         sport: [String]
     }],
+    price: String,
+    rating: Number,
+    experience: String,
+    resume: [{
+        education: String,
+        workexp: String,
+        awards: String,
+        otherinfo: String,
+    }],
     comments: [
         {
             type: mongoose.Schema.ObjectId,

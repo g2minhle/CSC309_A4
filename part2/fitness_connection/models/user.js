@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
     phone: String,
     sportRecord: {
         sports: [String],
-        locaion: [String],
+        location: [String],
         experience: String,
     },
     trainerProfile: {        
