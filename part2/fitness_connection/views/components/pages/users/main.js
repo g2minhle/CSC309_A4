@@ -5,30 +5,30 @@ ReactDOM = require('react-dom'),
 Container = React.createClass({
     render: function() { return (
     
-        <div class="container">
-            <div class="row">
-                <div class="profile_left col-md-2">
-                    <img class="img-circle profile_img" src="images/default_profile.jpg" />
+        <div className="container">
+            <div className="row">
+                <div className="profile_left col-md-2">
+                    <img className="img-circle profile_img" src="images/default_profile.jpg" />
                 </div>
-                <div class="profile_center col-md-8">
-                    <span class="font-bold">Name: </span> Mike Superswimmer
+                <div className="profile_center col-md-8">
+                    <span className="font-bold">Name: </span> Mike Superswimmer
                     <br />
-                    <span class="font-bold">Sport: </span> Swimming
+                    <span className="font-bold">Sport: </span> Swimming
                     <br />
-                    <span class="font-bold">Rating: </span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> (2 Reviews)
+                    <span className="font-bold">Rating: </span>
+                    <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <span className="glyphicon glyphicon-star-empty" aria-hidden="true"></span> (2 Reviews)
                     <br />
-                    <span class="font-italic">
+                    <span className="font-italic">
                         "I have been swimming for over 30 years, both recreationally and competitively. I was part of the 2016 Superland Olympic Swim Team and won countless gold medals.  I am clearly the best."</span>
                     <br />
 
-                    <span class="font-bold">Location: </span> Swim Valley, Superland (&lt; 50 km)
+                    <span className="font-bold">Location: </span> Swim Valley, Superland (&lt; 50 km)
                     <br />
-                    <span class="font-bold"> Experience: </span>
+                    <span className="font-bold"> Experience: </span>
                     <ul>
                         <li> Coached Michel Phelps for 5 years</li>
                         <li> Obama's Personal Trainer</li>
@@ -37,19 +37,19 @@ Container = React.createClass({
                     <br />
 
                 </div>
-                <div class="profile_right col-md-2">
+                <div className="profile_right col-md-2">
                     <h2>$99</h2>
-                    <button class="btn btn-lg btn-primary btn-block">Message</button>
-                    <a href="./book.html" class="btn btn-lg btn-danger btn-block">Book Now!</a>
+                    <button className="btn btn-lg btn-primary btn-block">Message</button>
+                    <a href="./book.html" className="btn btn-lg btn-danger btn-block">Book Now!</a>
                 </div>
             </div>
             <hr />
-            <div class="row">
-                <div class="profile_left col-md-8">
-                    <span class="font-bold"><h2>Resume </h2></span>
-                    <span class="font-bold"> Education: </span> Kinesiology from University of Toronto, Class of 1989
+            <div className="row">
+                <div className="profile_left col-md-8">
+                    <span className="font-bold"><h2>Resume </h2></span>
+                    <span className="font-bold"> Education: </span> Kinesiology from University of Toronto, className of 1989
                     <br />
-                    <span class="font-bold"> Work Experience: </span>
+                    <span className="font-bold"> Work Experience: </span>
                     <ul>
                         <li> Helped Obama </li>
                         <li> Trained Beyonce</li>
@@ -57,7 +57,7 @@ Container = React.createClass({
                         <li> part of the 2016 Superland Olympic Swim Team</li>
                     </ul>
                     <br />
-                    <span class="font-bold"> Awards: </span>
+                    <span className="font-bold"> Awards: </span>
                     <ul>
                         <li> Youth Olympics 1980 gold medalist</li>
                         <li> Olympics 1996 gold medalist</li>
@@ -65,29 +65,29 @@ Container = React.createClass({
                     </ul>
                     <br />
                     <hr />
-                    <span class="font-bold"><h2>Reviews </h2></span>
+                    <span className="font-bold"><h2>Reviews </h2></span>
                     <br />
-                    <div class="profile_left col-md-2">
-                        <img class="img-circle profile_img" src="images/default_profile_small.jpg" width="100" height="100" />
+                    <div className="profile_left col-md-2">
+                        <img className="img-circle profile_img" src="images/default_profile_small.jpg" width="100" height="100" />
                     </div>
-                    <div class="profile_center col-md-10">
-                        <span class="font-bold"> Name: </span> Beyonce
+                    <div className="profile_center col-md-10">
+                        <span className="font-bold"> Name: </span> Beyonce
                         <br />
-                        <span class="font-bold"> Location: </span> New York(&lt;100km)
+                        <span className="font-bold"> Location: </span> New York(&lt;100km)
                         <br />
-                        <span class="font-bold"> Profession: </span> Athlete
+                        <span className="font-bold"> Profession: </span> Athlete
                         <br />
-                        <span class="font-bold"> Review and Rating: </span> Mike is very helpful.
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span className="font-bold"> Review and Rating: </span> Mike is very helpful.
+                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
                     </div>
                     <br />
                     <br />
                 </div>
-                <div class="profile_right col-md-4 well">
+                <div className="profile_right col-md-4 well">
                     <h2>Availiability</h2>
                     <br /> Monday:10am -5pm
                     <br /> Wednesday:10am -5pm
