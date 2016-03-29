@@ -10,35 +10,40 @@ Container = React.createClass({
                 <div className="col-xs-2">
                     <img className="img-circle profile_img" src="images/default_profile.jpg" />
                 </div>
-                <div className="col-xs-3">
+                <div className="col-xs-2">
                     <button type="button" className="btn btn-primary btn-block">Change Profile Photo</button>
+                </div>
+                <div className="col-xs-2">
                     <button type="button" className="btn btn-primary  btn-block">Save Changes</button>
                 </div>
-                <div className="col-xs-7">
-                    <div className="row">
-                        <div className="col-xs-6">
-                            <b>Given Name</b>
-                            <input className="form-control" placeholder="Given Name" />
-                        </div>
-                        <div className="col-xs-6">
-                            <b>Family Name</b>
-                            <input className="form-control" placeholder="Family Name" />
-                        </div>
-                        <div className="col-xs-6">
-                            <b>Sport</b>
-                            <input className="form-control" placeholder="Sport" />
-                        </div>
-                        <div className="col-xs-6">
-                            <b>Location</b>
-                            <input className="form-control" placeholder="Location" />
-                        </div>
-                        <p></p>
-                        <div className="col-xs-12">
-                            <b>Experience:</b>
-                            <textarea type="text" className="form-control" name="experience">
-                            </textarea>
-                        </div>
-                    </div>
+                <div className="col-xs-4">
+                </div>
+                
+                
+            </div>
+            <hr/>
+            <div className="row">
+                <div className="col-xs-6">
+                    <b>Given Name</b>
+                    <input className="form-control" placeholder="Given Name" />
+                </div>
+                <div className="col-xs-6">
+                    <b>Family Name</b>
+                    <input className="form-control" placeholder="Family Name" />
+                </div>
+                <div className="col-xs-6">
+                    <b>Sport</b>
+                    <input className="form-control" placeholder="Sport" />
+                </div>
+                <div className="col-xs-6">
+                    <b>Location</b>
+                    <input className="form-control" placeholder="Location" />
+                </div>
+                <p></p>
+                <div className="col-xs-12">
+                    <b>Experience:</b>
+                    <textarea type="text" className="form-control" name="experience">
+                    </textarea>
                 </div>
             </div>
             <hr/>
