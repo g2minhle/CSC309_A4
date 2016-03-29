@@ -2,43 +2,6 @@ var
 React = require('react'),
 ReactDOM = require('react-dom'),
 
-Navbar = React.createClass({
-    render: function() { return (
-        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="./index.html" class="navbar-brand" href="#">Fitness Connection</a>
-                    <form class="navbar-form navbar-left search-form" role="search">
-                        <input type="text" class="form-control search-box" placeholder="crossfit" />
-                        <a href="./searchResults.html" type="submit" class="btn btn-default">Search</a>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="./editPage.html">
-                                My Account
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./landingPage.html">
-                                Sign Out
-                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    
-    ); }
-}),
-    
 Container = React.createClass({
     render: function() { return (
     
@@ -140,7 +103,6 @@ Container = React.createClass({
 Index = React.createClass({
     render: function() { return (
         <div>
-            <Navbar />
             <Container />
         </div>
 
