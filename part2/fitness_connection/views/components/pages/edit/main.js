@@ -1,8 +1,37 @@
 var
 React = require('react'),
 ReactDOM = require('react-dom'),
-
+    
 Container = React.createClass({
+    saveChanges: function(e) {
+        //make api request here to save changes
+        e.preventDefault();
+
+        var data = {
+            "firstName": "req.firstName",
+            "lastName": "req.lastName",
+            "profilePictureURL": "req.profilePictureURL",
+            "sports": "req.sports",
+            "location": "req.location",
+            "experience": "req.experience"
+        }
+
+        // Submit form via jQuery/AJAX
+        $.ajax({
+            type: 'POST',
+            url: './savechanges',
+            data: data
+        })
+        .done(function(data) {
+            console.log('done');
+        })
+        .fail(function(jqXhr) {
+            console.log('failed to register');
+        });
+    },
+    changeProfilePicture: function(e) {
+        //make api request here to change profile picture
+    },
     render: function() { return (
     
         <div className="container">
@@ -11,10 +40,10 @@ Container = React.createClass({
                     <img className="img-circle profile_img" src="images/default_profile.jpg" />
                 </div>
                 <div className="col-xs-2">
-                    <button type="button" className="btn btn-primary btn-block">Change Profile Photo</button>
+                    <button onClick={this.changeProfilePicture} type="button" className="btn btn-primary btn-block">Change Profile Photo</button>
                 </div>
                 <div className="col-xs-2">
-                    <button type="button" className="btn btn-primary  btn-block">Save Changes</button>
+                    <button onClick={this.saveChanges} type="button" className="btn btn-primary  btn-block">Save Changes</button>
                 </div>
                 <div className="col-xs-4">
                 </div>
@@ -23,6 +52,7 @@ Container = React.createClass({
             </div>
             <hr/>
             <div className="row">
+                <h3>User Details</h3>
                 <div className="col-xs-6">
                     <b>Given Name</b>
                     <input className="form-control" placeholder="Given Name" />
@@ -49,29 +79,53 @@ Container = React.createClass({
             <hr/>
 
             <div className="row">
+                <h3>Resume</h3>
                 <div className="col-xs-12">
-                    <b>Resume</b>
-                    <textarea type="text" className="form-control" name="Resume"></textarea>
+                    <b>Education</b>
+                    <textarea type="text" className="form-control" name="education">
+                    </textarea>
                 </div>
+                <div className="col-xs-12">
+                    <b>Work Experience</b>
+                    <textarea type="text" className="form-control" name="workexperience">
+                    </textarea>
+                </div>
+                <div className="col-xs-12">
+                    <b>Awards</b>
+                    <textarea type="text" className="form-control" name="awards">
+                    </textarea>
+                </div>
+                <div className="col-xs-12">
+                    <b>Other Info</b>
+                    <textarea type="text" className="form-control" name="otherinfo">
+                    </textarea>
+                </div>
+                
             </div>
             <hr/>
             <div className="row">
+                <h3>Availability</h3>
                 <div className="col-xs-12">
-                    <h2> Availability: </h2>
+                    <div className="col-xs-2">
+                    </div>
+                    <div className="col-xs-5">
+                        <h3>From</h3>
+                    </div>
+                    <div className="col-xs-5">
+                        <h3>To</h3>
+                    </div>
                 </div>
             </div>
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Monday</h3>
+                        <h4>Monday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
             </div>
@@ -79,15 +133,13 @@ Container = React.createClass({
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Tuesday</h3>
+                        <h4>Tuesday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -96,15 +148,13 @@ Container = React.createClass({
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Wednesday</h3>
+                        <h4>Wednesday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -113,15 +163,13 @@ Container = React.createClass({
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Thursday</h3>
+                        <h4>Thursday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -130,15 +178,13 @@ Container = React.createClass({
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Friday</h3>
+                        <h4>Friday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -147,15 +193,13 @@ Container = React.createClass({
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Saturday</h3>
+                        <h4>Saturday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -164,15 +208,13 @@ Container = React.createClass({
             <div className="row">
                 <div className="col-xs-12">
                     <div className="col-xs-2">
-                        <h3>Sunday</h3>
+                        <h4>Sunday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <b>From</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <b>To</b>
-                        <input className="form-control" />
+                        <input type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -192,7 +234,12 @@ Index = React.createClass({
     ); }
 });
 
+
+
 ReactDOM.render(
     <Index/>,
     document.getElementById('page-content')
 );
+
+// Function for if user presses save changes
+

@@ -10,11 +10,8 @@ var userSchema = mongoose.Schema({
     profilePictureURL: String,
     email: String,
     phone: String,
-    sportRecord: {
-        sports: [String],
-        location: [String],
-        experience: String,
-    },
+    sports: String,
+    experience: String,
     trainerProfile: {        
         type: mongoose.Schema.ObjectId,
         ref: 'Trainer'

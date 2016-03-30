@@ -39,8 +39,7 @@ Container = React.createClass({
                 </div>
                 <div className="profile_right col-md-2">
                     <h2>$99</h2>
-                    <button className="btn btn-lg btn-primary btn-block">Message</button>
-                    <a href="./book.html" className="btn btn-lg btn-danger btn-block">Book Now!</a>
+                    <a href="../book" className="btn btn-lg btn-danger btn-block">Book Now!</a>
                 </div>
             </div>
             <hr />
