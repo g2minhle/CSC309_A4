@@ -76,6 +76,34 @@ Container = React.createClass({
                     </textarea>
                 </div>
             </div>
+        
+            <hr/>
+            <div className="row">
+                <h3>Are you a Trainer or an Athlete?</h3>
+                <div className="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" defaultChecked />
+                    Athlete
+                  </label>
+                </div>
+                <div className="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+                    Trainer
+                  </label>
+                </div>
+            </div>
+        
+            <hr/>
+            <div className="row">
+                <h3>Price to Charge in $</h3>
+                <div className="col-xs-3">
+                    <input type="number" className="form-control" />
+                </div>
+                <div className="col-xs-9">  
+                </div>
+            </div>
+        
             <hr/>
 
             <div className="row">

@@ -27,8 +27,12 @@ router.post('/savechanges', function(req, res) {
                     "sports": req.sports,
                     "location": req.location,
                     "experience": req.experience,
-                    "trainerProfile.$.price": req.price
-                    
+                    "trainerProfile.$.price": req.price,
+                    "trainerProfile.$.availability": req.availability,
+                    "trainerProfile.$.education": req.education,
+                    "trainerProfile.$.workexp": req.workexp,
+                    "trainerProfile.$.awards": req.awards,
+                    "trainerProfile.$.otherinfo": req.otherinfo
                   },
           }, function(err, results) {
           //console.log(results);
