@@ -10,10 +10,17 @@ Container = React.createClass({
         var data = {
             "firstName": "req.firstName",
             "lastName": "req.lastName",
+            "isTrainer": "req.isTrainer",
             "profilePictureURL": "req.profilePictureURL",
             "sports": "req.sports",
             "location": "req.location",
-            "experience": "req.experience"
+            "experience": "req.experience",
+            "trainerProfile.$.price": "req.price",
+            "trainerProfile.$.availability": "req.availability",
+            "trainerProfile.$.education": "req.education",
+            "trainerProfile.$.workexp": "req.workexp",
+            "trainerProfile.$.awards": "req.awards",
+            "trainerProfile.$.otherinfo": "req.otherinfo"
         }
 
         // Submit form via jQuery/AJAX
@@ -62,8 +69,8 @@ Container = React.createClass({
                     <input className="form-control" placeholder="Family Name" />
                 </div>
                 <div className="col-xs-6">
-                    <b>Sport</b>
-                    <input className="form-control" placeholder="Sport" />
+                    <b>Sport(s)</b>
+                    <input className="form-control" placeholder="Sport(s)" />
                 </div>
                 <div className="col-xs-6">
                     <b>Location</b>

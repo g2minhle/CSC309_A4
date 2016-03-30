@@ -28,6 +28,8 @@ router.get('/:id', function(req, res, next) {
       });
     });
     
+    // Take data that was fetched and add it to page. (TODO)
+    
     res.render('page', { pageName: 'users' });
 });
 
