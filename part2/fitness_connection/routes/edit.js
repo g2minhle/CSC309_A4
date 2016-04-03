@@ -11,7 +11,7 @@ var url = 'mongodb://localhost:27017/fitness_connection';
 router.get('/:id', function(req, res, next) {
     // Fetch user profile picture and existing data here.
     var findUser = function(db, callback) {
-       var cursor = db.collection('users').find( {"id": req.params.id});
+       var cursor = db.collection('users').find( {"userid": req.params.id});
        cursor.each(function(err, doc) {
           assert.equal(err, null);
           if (doc != null) {
@@ -36,30 +36,56 @@ router.get('/:id', function(req, res, next) {
 });
 
 /* GET save changes on edit page. */
-router.post('/savechanges', function(req, res) {
+router.post('/savechanges/:id', function(req, res) {
     console.log("SAVING CHANGES");
     console.log(req.body);
     
+    var insertDocument = function(db, callback) {
+       db.collection('users').insertOne( {
+         userid: 3, 
+         firstName: "zain",
+            lastName: "manji",
+            isTrainer: true,
+            profilePictureURL: "String",
+            email: "String",
+            phone: "String",
+            sports: "String",
+            experience: "String"
+           
+       }, function(err, result) {
+        assert.equal(err, null);
+        console.log("Inserted a document into the users collection.");
+        callback();
+      });
+    };
+    
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      insertDocument(db, function() {
+          db.close();
+      });
+    });
+    
     var updateUser = function(db, callback) {
        db.collection('users').updateOne(
-          { "id" : req.id },
+          { "userid" : 3 },
           {
-            $set: { "firstName": req.firstName,
-                    "lastName": req.lastName,
-                    "isTrainer": req.isTrainer,
-                    "profilePictureURL": req.profilePictureURL,
-                    "sports": req.sports,
-                    "location": req.location,
-                    "experience": req.experience,
-                    "trainerProfile.$.price": req.price,
-                    "trainerProfile.$.availability": req.availability,
-                    "trainerProfile.$.education": req.education,
-                    "trainerProfile.$.workexp": req.workexp,
-                    "trainerProfile.$.awards": req.awards,
-                    "trainerProfile.$.otherinfo": req.otherinfo
+            $set: { "firstName": req.body.firstName,
+                    "lastName": req.body.lastName,
+                    "isTrainer": req.body.isTrainer,
+                    "profilePictureURL": req.body.profilePictureURL,
+                    "sports": req.body.sports,
+                    "location": req.body.location,
+                    "experience": req.body.experience,
+                    "trainerProfile.$.price": req.body.price,
+                    "trainerProfile.$.availability": req.body.availability,
+                    "trainerProfile.$.education": req.body.education,
+                    "trainerProfile.$.workexp": req.body.workexp,
+                    "trainerProfile.$.awards": req.body.awards,
+                    "trainerProfile.$.otherinfo": req.body.otherinfo
                   },
           }, function(err, results) {
-          //console.log(results);
+          console.log(err);
           callback();
        });
     };
@@ -71,8 +97,49 @@ router.post('/savechanges', function(req, res) {
           db.close();
       });
     });
+   
+    console.log("FINDING!!!!");
+    var findRestaurants = function(db, callback) {
+       var cursor =db.collection('users').find( );
+       cursor.each(function(err, doc) {
+          assert.equal(err, null);
+          if (doc != null) {
+             console.dir(doc);
+          } else {
+              console.log("Nope!");
+             callback();
+          }
+       });
+    };
     
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      findRestaurants(db, function() {
+          db.close();
+      });
+    });
     
+    console.log("FINDING!!!!");
+    var findRestaurants = function(db, callback) {
+       var cursor =db.collection('trainers').find( );
+       cursor.each(function(err, doc) {
+          assert.equal(err, null);
+          if (doc != null) {
+             console.dir(doc);
+          } else {
+              console.log("Nope!");
+             callback();
+          }
+       });
+    };
+    
+    MongoClient.connect(url, function(err, db) {
+      assert.equal(null, err);
+      findRestaurants(db, function() {
+          db.close();
+      });
+    });
+
 
 });
 

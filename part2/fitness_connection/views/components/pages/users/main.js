@@ -3,6 +3,8 @@ React = require('react'),
 ReactDOM = require('react-dom'),
 
 Container = React.createClass({
+    
+  
     render: function() { return (
     
         <div className="container">
@@ -63,6 +65,12 @@ Container = React.createClass({
                         <li> MVP 2006 </li>
                     </ul>
                     <br />
+                    <span className="font-bold"> Other Info: </span>
+                    <ul>
+                        <li> Youth Olympics 1980 gold medalist</li>
+                        <li> Olympics 1996 gold medalist</li>
+                        <li> MVP 2006 </li>
+                    </ul>
                     <hr />
                     <span className="font-bold"><h2>Reviews </h2></span>
                     <br />

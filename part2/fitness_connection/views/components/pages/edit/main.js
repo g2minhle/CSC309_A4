@@ -7,26 +7,84 @@ Container = React.createClass({
         //make api request here to save changes
         e.preventDefault();
 
+        var isTrainer = false;
+        if (document.getElementById('isTrainer').checked) {
+          isTrainer = true;
+        }
+
+        var availability = []
+        if (document.getElementById('mondayfrom').value && document.getElementById('mondayto').value) {
+            availability.push({
+                from:document.getElementById('mondayfrom').value,
+                to:document.getElementById('mondayto').value
+            });
+        }
+
+        if (document.getElementById('tuesdayfrom').value && document.getElementById('tuesdayto').value) {
+            availability.push({
+                from:document.getElementById('tuesdayfrom').value,
+                to:document.getElementById('tuesdayto').value
+            });
+        }
+
+        if (document.getElementById('wednesdayfrom').value && document.getElementById('wednesdayto').value) {
+            availability.push({
+                from:document.getElementById('wednesdayfrom').value,
+                to:document.getElementById('wednesdayto').value
+            });
+        }
+
+        if (document.getElementById('thursdayfrom').value && document.getElementById('thursdayto').value) {
+            availability.push({
+                from:document.getElementById('thursdayfrom').value,
+                to:document.getElementById('thursdayto').value
+            });
+        }
+
+        if (document.getElementById('fridayfrom').value && document.getElementById('fridayto').value) {
+            availability.push({
+                from:document.getElementById('fridayfrom').value,
+                to:document.getElementById('fridayto').value
+            });
+        }
+
+        if (document.getElementById('saturdayfrom').value && document.getElementById('saturdayto').value) {
+            availability.push({
+                from:document.getElementById('saturdayfrom').value,
+                to:document.getElementById('saturdayto').value
+            });
+        }
+
+        if (document.getElementById('sundayfrom').value && document.getElementById('sundayto').value) {
+            availability.push({
+                from:document.getElementById('sundayfrom').value,
+                to:document.getElementById('sundayto').value
+            });
+        }
+
+
+
         var data = {
-            "firstName": "req.firstName",
-            "lastName": "req.lastName",
-            "isTrainer": "req.isTrainer",
+            "userid": 3,
+            "firstName": document.getElementById('firstName').value,
+            "lastName": document.getElementById('lastName').value,
+            "isTrainer": isTrainer,
             "profilePictureURL": "req.profilePictureURL",
-            "sports": "req.sports",
-            "location": "req.location",
-            "experience": "req.experience",
-            "trainerProfile.$.price": "req.price",
-            "trainerProfile.$.availability": "req.availability",
-            "trainerProfile.$.education": "req.education",
-            "trainerProfile.$.workexp": "req.workexp",
-            "trainerProfile.$.awards": "req.awards",
-            "trainerProfile.$.otherinfo": "req.otherinfo"
+            "sports": document.getElementById('sports').value,
+            "location": document.getElementById('location').value,
+            "experience": document.getElementById('experience').value,
+            "trainerProfile.$.price": document.getElementById('price').value,
+            "trainerProfile.$.availability": availability,
+            "trainerProfile.$.education": document.getElementById('education').value,
+            "trainerProfile.$.workexp": document.getElementById('workexp').value,
+            "trainerProfile.$.awards": document.getElementById('awards').value,
+            "trainerProfile.$.otherinfo": document.getElementById('otherinfo').value
         }
 
         // Submit form via jQuery/AJAX
         $.ajax({
             type: 'POST',
-            url: './savechanges',
+            url: './savechanges/3', // ADD USER ID HERE
             data: data
         })
         .done(function(data) {
@@ -39,7 +97,9 @@ Container = React.createClass({
     changeProfilePicture: function(e) {
         //make api request here to change profile picture
     },
-    render: function() { return (
+    render: function() { 
+       
+        return (
     
         <div className="container">
             <div className="row">
@@ -62,24 +122,24 @@ Container = React.createClass({
                 <h3>User Details</h3>
                 <div className="col-xs-6">
                     <b>Given Name</b>
-                    <input className="form-control" placeholder="Given Name" />
+                    <input id="firstName" className="form-control" placeholder="Given Name" />
                 </div>
                 <div className="col-xs-6">
                     <b>Family Name</b>
-                    <input className="form-control" placeholder="Family Name" />
+                    <input id="lastName" className="form-control" placeholder="Family Name" />
                 </div>
                 <div className="col-xs-6">
                     <b>Sport(s)</b>
-                    <input className="form-control" placeholder="Sport(s)" />
+                    <input id="sports" className="form-control" placeholder="Sport(s)" />
                 </div>
                 <div className="col-xs-6">
                     <b>Location</b>
-                    <input className="form-control" placeholder="Location" />
+                    <input id="location" className="form-control" placeholder="Location" />
                 </div>
                 <p></p>
                 <div className="col-xs-12">
                     <b>Experience:</b>
-                    <textarea type="text" className="form-control" name="experience">
+                    <textarea id="experience" type="text" className="form-control" name="experience">
                     </textarea>
                 </div>
             </div>
@@ -89,13 +149,13 @@ Container = React.createClass({
                 <h3>Are you a Trainer or an Athlete?</h3>
                 <div className="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" defaultChecked />
+                    <input type="radio" name="optionsRadios" id="isAthlete" value="false" defaultChecked />
                     Athlete
                   </label>
                 </div>
                 <div className="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" />
+                    <input type="radio" name="optionsRadios" id="isTrainer" value="true" />
                     Trainer
                   </label>
                 </div>
@@ -105,7 +165,7 @@ Container = React.createClass({
             <div className="row">
                 <h3>Price to Charge in $</h3>
                 <div className="col-xs-3">
-                    <input type="number" className="form-control" />
+                    <input id="price" type="number" className="form-control" />
                 </div>
                 <div className="col-xs-9">  
                 </div>
@@ -117,22 +177,22 @@ Container = React.createClass({
                 <h3>Resume</h3>
                 <div className="col-xs-12">
                     <b>Education</b>
-                    <textarea type="text" className="form-control" name="education">
+                    <textarea id="education" type="text" className="form-control" name="education">
                     </textarea>
                 </div>
                 <div className="col-xs-12">
                     <b>Work Experience</b>
-                    <textarea type="text" className="form-control" name="workexperience">
+                    <textarea id="workexp" type="text" className="form-control" name="workexperience">
                     </textarea>
                 </div>
                 <div className="col-xs-12">
                     <b>Awards</b>
-                    <textarea type="text" className="form-control" name="awards">
+                    <textarea id="awards" type="text" className="form-control" name="awards">
                     </textarea>
                 </div>
                 <div className="col-xs-12">
                     <b>Other Info</b>
-                    <textarea type="text" className="form-control" name="otherinfo">
+                    <textarea id="otherinfo" type="text" className="form-control" name="otherinfo">
                     </textarea>
                 </div>
                 
@@ -157,10 +217,10 @@ Container = React.createClass({
                         <h4>Monday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="mondayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="mondayto" type="time" className="form-control" />
                     </div>
                 </div>
             </div>
@@ -171,10 +231,10 @@ Container = React.createClass({
                         <h4>Tuesday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="tuesdayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="tuesdayto" type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -186,10 +246,10 @@ Container = React.createClass({
                         <h4>Wednesday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="wednesdayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="wednesdayto" type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -201,10 +261,10 @@ Container = React.createClass({
                         <h4>Thursday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="thursdayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="thursdayto" type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -216,10 +276,10 @@ Container = React.createClass({
                         <h4>Friday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="fridayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="fridayto" type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -231,10 +291,10 @@ Container = React.createClass({
                         <h4>Saturday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="saturdayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="saturdayto" type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -246,10 +306,10 @@ Container = React.createClass({
                         <h4>Sunday</h4>
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="sundayfrom" type="time" className="form-control" />
                     </div>
                     <div className="col-xs-5">
-                        <input type="time" className="form-control" />
+                        <input id="sundayto" type="time" className="form-control" />
                     </div>
                 </div>
                 <hr/>
@@ -262,7 +322,6 @@ Container = React.createClass({
 Index = React.createClass({
     render: function() { return (
         <div>
-            
             <Container />
         </div>
 
@@ -276,5 +335,4 @@ ReactDOM.render(
     document.getElementById('page-content')
 );
 
-// Function for if user presses save changes
 

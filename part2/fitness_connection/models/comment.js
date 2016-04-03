@@ -9,14 +9,6 @@ var commentSchema = mongoose.Schema({
     },
     comment: String,
     rating: Number,
-    like: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'User'
-    }],
-    dislikes: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'User'
-    }],
     dateCreated: { type: Date, default: Date.now }
 });
 

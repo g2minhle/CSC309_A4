@@ -10,10 +10,6 @@ var booking = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'User'
     },
-    time: [Date],
-    location: String,
-    sport: [String],
-    notes: String,
     dateCreated: { type: Date, default: Date.now }
 });
 
