@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
     phone: String,
     sports: String,
     experience: String,
+    location: String,
     trainerProfile: {        
         type: mongoose.Schema.ObjectId,
         ref: 'Trainer'

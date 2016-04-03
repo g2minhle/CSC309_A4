@@ -4,11 +4,9 @@ var bcrypt = require('bcrypt-nodejs'),
 // define the schema for our user model
 var trainerSchema = mongoose.Schema({
     id: mongoose.Schema.ObjectId,
-    location : String,
     availability: [{
         from: Date,
-        to: Date,
-        sport: [String]
+        to: Date
     }],
     price: String,
     rating: Number,
