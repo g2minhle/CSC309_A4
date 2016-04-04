@@ -1,16 +1,34 @@
 var express = require('express'),
     passport = require('passport');
 
-var options = { successRedirect: '/home', failureRedirect: '/' },
-    router = express.Router();
+var
+    router = express.Router(),
 
-router.post('/login', passport.authenticate('local', options));
+    options = {
+        successRedirect: '/home',
+        failureRedirect: '/auth/signIn',
+        failureFlash: true
+    };
+
+router.get('/signIn', function(req, res, next) {
+    res.render('pageWithFlash', { 
+        pageName: 'signIn',
+        message: req.flash('loginMessage') 
+    });
+});
+
+router.get('/signUp', function(req, res, next) {
+    res.render('pageWithFlash', { 
+        pageName: 'signUp',
+        message: req.flash('signupMessage') 
+    });
+});
+
+router.post('/local/signup', passport.authenticate('local-signup', options));
+router.post('/local/login', passport.authenticate('local-login', options));
 
 router.get('/facebook', passport.authenticate('facebook'));
 router.get('/facebook/callback', passport.authenticate('facebook', options));
-
-router.get('/google/', passport.authenticate('google'));
-router.get('/google/return', passport.authenticate('google', options));
 
 router.get('/logout', function(req, res) {
     req.logout();

@@ -20,16 +20,13 @@ var userSchema = mongoose.Schema({
     },
     authentication: {
         facebookAuth: {
-            type: mongoose.Schema.ObjectId,
-            ref: 'FacebookAuth'
-        },
-        googleAuth: {
-            type: mongoose.Schema.ObjectId,
-            ref: 'GoogleAuth'
+            facebookId: String,
+            token: String,
+            email: String,
         },
         localAuth: {
-            type: mongoose.Schema.ObjectId,
-            ref: 'LocalAuth'
+            email: String,
+            password: String
         }
     },
     dateCreated: { type: Date, default: Date.now }

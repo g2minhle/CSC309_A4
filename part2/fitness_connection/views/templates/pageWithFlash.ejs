@@ -1,0 +1,16 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <% include ./partials/css %>
+        <link rel="stylesheet" href="/statics/css/<%= pageName %>.css">
+</head>
+
+<body>
+    <div id="flash-message" class="hidden"><%= message %></div>
+    <div id="page-content"></div>    
+    <% include ./partials/js %>            
+    <script src="/statics/js/<%= pageName %>.js"></script>
+</body>
+
+</html>

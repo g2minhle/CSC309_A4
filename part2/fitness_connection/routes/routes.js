@@ -39,9 +39,6 @@ function routersForErrorHandlers(app) {
             error: {}
         });
     });
-
-
-
 }
 
 function routersForStatics(app) {
