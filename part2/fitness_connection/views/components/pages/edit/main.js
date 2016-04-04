@@ -62,10 +62,11 @@ Container = React.createClass({
             });
         }
 
-
+        var url = window.location.href;
+        var id = url.split('/').pop();
 
         var data = {
-            "userid": 3,
+            "userid": id,
             "firstName": document.getElementById('firstName').value,
             "lastName": document.getElementById('lastName').value,
             "isTrainer": isTrainer,
@@ -147,17 +148,19 @@ Container = React.createClass({
             <hr/>
             <div className="row">
                 <h3>Are you a Trainer or an Athlete?</h3>
-                <div className="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios" id="isAthlete" value="false" defaultChecked />
-                    Athlete
-                  </label>
-                </div>
-                <div className="radio">
-                  <label>
-                    <input type="radio" name="optionsRadios" id="isTrainer" value="true" />
-                    Trainer
-                  </label>
+                <div className="col-xs-3">
+                    <div className="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="isAthlete" value="false" defaultChecked />
+                            Athlete
+                        </label>
+                    </div>
+                    <div className="radio">
+                        <label>
+                        <input type="radio" name="optionsRadios" id="isTrainer" value="true" />
+                        Trainer
+                      </label>
+                    </div>
                 </div>
             </div>
         

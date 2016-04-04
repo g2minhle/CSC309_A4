@@ -37,38 +37,12 @@ router.get('/:id', function(req, res, next) {
 
 /* GET save changes on edit page. */
 router.post('/savechanges/:id', function(req, res) {
-    console.log("SAVING CHANGES");
+    console.log("Saving changes made by the user.");
     console.log(req.body);
-    
-    var insertDocument = function(db, callback) {
-       db.collection('users').insertOne( {
-         userid: 3, 
-         firstName: "zain",
-            lastName: "manji",
-            isTrainer: true,
-            profilePictureURL: "String",
-            email: "String",
-            phone: "String",
-            sports: "String",
-            experience: "String"
-           
-       }, function(err, result) {
-        assert.equal(err, null);
-        console.log("Inserted a document into the users collection.");
-        callback();
-      });
-    };
-    
-    MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
-      insertDocument(db, function() {
-          db.close();
-      });
-    });
-    
+
     var updateUser = function(db, callback) {
        db.collection('users').updateOne(
-          { "userid" : 3 },
+          { "userid" : req.params.id },
           {
             $set: { "firstName": req.body.firstName,
                     "lastName": req.body.lastName,
@@ -76,13 +50,13 @@ router.post('/savechanges/:id', function(req, res) {
                     "profilePictureURL": req.body.profilePictureURL,
                     "sports": req.body.sports,
                     "location": req.body.location,
-                    "experience": req.body.experience,
-                    "trainerProfile.$.price": req.body.price,
-                    "trainerProfile.$.availability": req.body.availability,
-                    "trainerProfile.$.education": req.body.education,
-                    "trainerProfile.$.workexp": req.body.workexp,
-                    "trainerProfile.$.awards": req.body.awards,
-                    "trainerProfile.$.otherinfo": req.body.otherinfo
+                    "experience": req.body.experience
+                    //"trainerProfile.$.price": req.body.price,
+                    //"trainerProfile.$.availability": req.body.availability,
+                    //"trainerProfile.$.education": req.body.education,
+                    //"trainerProfile.$.workexp": req.body.workexp,
+                    //"trainerProfile.$.awards": req.body.awards,
+                    //"trainerProfile.$.otherinfo": req.body.otherinfo
                   },
           }, function(err, results) {
           console.log(err);
@@ -90,56 +64,13 @@ router.post('/savechanges/:id', function(req, res) {
        });
     };
     
-    MongoClient.connect(url, function(err, db) {
+   MongoClient.connect(url, function(err, db) {
       assert.equal(null, err);
 
       updateUser(db, function() {
           db.close();
       });
     });
-   
-    console.log("FINDING!!!!");
-    var findRestaurants = function(db, callback) {
-       var cursor =db.collection('users').find( );
-       cursor.each(function(err, doc) {
-          assert.equal(err, null);
-          if (doc != null) {
-             console.dir(doc);
-          } else {
-              console.log("Nope!");
-             callback();
-          }
-       });
-    };
-    
-    MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
-      findRestaurants(db, function() {
-          db.close();
-      });
-    });
-    
-    console.log("FINDING!!!!");
-    var findRestaurants = function(db, callback) {
-       var cursor =db.collection('trainers').find( );
-       cursor.each(function(err, doc) {
-          assert.equal(err, null);
-          if (doc != null) {
-             console.dir(doc);
-          } else {
-              console.log("Nope!");
-             callback();
-          }
-       });
-    };
-    
-    MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
-      findRestaurants(db, function() {
-          db.close();
-      });
-    });
-
 
 });
 

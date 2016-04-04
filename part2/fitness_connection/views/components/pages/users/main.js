@@ -3,8 +3,44 @@ React = require('react'),
 ReactDOM = require('react-dom'),
 
 Container = React.createClass({
-    
-  
+    getInitialState: function() {
+        return {
+            userid: -1,
+            firstName: '',
+            lastName: '',
+            isTrainer: false,
+            profilePictureURL: '',
+            email: '',
+            phone: '',
+            sports: '',
+            experience: '',
+            location: ''
+        };
+    },
+ 
+    componentDidMount: function() {
+        var url = window.location.href;
+        var id = url.split('/').pop();
+        this.serverRequest = $.get('./fetch/' + id, function (res) {
+            this.setState({
+                userid: res.userid,
+                firstName: res.firstName,
+                lastName: res.lastName,
+                isTrainer: res.isTrainer,
+                profilePictureURL: res.profilePictureURL,
+                email: res.email,
+                phone: res.phone,
+                sports: res.sports,
+                experience: res.experience,
+                location: res.location
+            });
+        }.bind(this));
+    },
+
+    componentWillUnmount: function() {
+        this.serverRequest.abort();
+    },
+ 
     render: function() { return (
     
         <div className="container">
@@ -13,9 +49,9 @@ Container = React.createClass({
                     <img className="img-circle profile_img" src="images/default_profile.jpg" />
                 </div>
                 <div className="profile_center col-md-8">
-                    <span className="font-bold">Name: </span> Mike Superswimmer
+                    <span className="font-bold">Name: </span> {this.state.firstName} {this.state.lastName}
                     <br />
-                    <span className="font-bold">Sport: </span> Swimming
+                    <span className="font-bold">Sport(s): </span> {this.state.sports}
                     <br />
                     <span className="font-bold">Rating: </span>
                     <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
@@ -24,19 +60,14 @@ Container = React.createClass({
                     <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
                     <span className="glyphicon glyphicon-star-empty" aria-hidden="true"></span> (2 Reviews)
                     <br />
-                    <span className="font-italic">
-                        "I have been swimming for over 30 years, both recreationally and competitively. I was part of the 2016 Superland Olympic Swim Team and won countless gold medals.  I am clearly the best."</span>
-                    <br />
 
-                    <span className="font-bold">Location: </span> Swim Valley, Superland (&lt; 50 km)
+                    <span className="font-bold">Location: </span> {this.state.location}
                     <br />
-                    <span className="font-bold"> Experience: </span>
-                    <ul>
-                        <li> Coached Michel Phelps for 5 years</li>
-                        <li> Obama's Personal Trainer</li>
-                        <li> Beyonce's Personal Trainer</li>
-                    </ul>
+                    <span className="font-bold"> Experience: </span> {this.state.experience}
                     <br />
+                    <span className="font-bold">Email: </span> {this.state.email}
+                    <br />
+                    <span className="font-bold">Phone #: </span> {this.state.phone}
 
                 </div>
                 <div className="profile_right col-md-2">
