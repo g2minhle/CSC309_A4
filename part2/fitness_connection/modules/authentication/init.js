@@ -1,6 +1,6 @@
 var config = require('../../config/authentication'),
     facebook = require('./facebook'),
-    google = require('./google'),
+    local = require('./local'),
     passport = require('passport'),    
     session = require('express-session'),
     User = require('../../models/user');;

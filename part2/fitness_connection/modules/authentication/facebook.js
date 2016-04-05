@@ -9,11 +9,11 @@ function createNewUser(profile, token) {
 
     // set all of the facebook information in our user model
     // set the users facebook id
-    newUser.facebook.id = profile.id;
+    newUser.authentication.facebookAuth.id = profile.id;
     // we will save the token that facebook provides to the user                   
-    newUser.facebook.token = token;
+    newUser.authentication.facebookAuth.token = token;
     // look at the passport user profile to see how names are returned
-    newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+    newUser.authentication.facebookAuth.name = profile.name.givenName + ' ' + profile.name.familyName;
 
     // save our user to the database
     newUser.save(function(err) {
@@ -28,7 +28,7 @@ function createNewUser(profile, token) {
 function authenticationSucceed(token, refreshToken, profile, done) {
     process.nextTick(function() {
         // find the user in the database based on their facebook id
-        User.findOne({ 'facebook.id': profile.id }, function(err, user) {
+        User.findOne({ 'authentication.facebookAuth.id': profile.id }, function(err, user) {
 
             // if there is an error, stop everything and return that
             // ie an error connecting to the database

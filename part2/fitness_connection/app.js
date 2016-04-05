@@ -2,7 +2,8 @@ var bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     express = require('express'),
     favicon = require('serve-favicon'),
-    logger = require('morgan');
+    logger = require('morgan'),
+    flash = require('connect-flash');
 
 var app = express(),
     modules = [
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(logger('dev'));
-
+app.use(flash());
 
 require('./models/database').init();
 

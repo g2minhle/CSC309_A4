@@ -1,8 +1,7 @@
 var 
 React = require('react'),
 
-SignInWithFacebook = require('./signInWithFacebook'),
-SignInWithGoogle = require('./signInWithGoogle');
+SignInWithFacebook = require('./signInWithFacebook');
 
 module.exports = AlternativeAuthMethods = React.createClass({
     render: function() {
@@ -14,11 +13,8 @@ module.exports = AlternativeAuthMethods = React.createClass({
                     </div>
                 </div>
                 <div className="row">                                
-                    <div className="col-xs-6 center-align">
+                    <div className="col-xs-12 center-align">
                         <SignInWithFacebook />
-                    </div>
-                    <div className="col-xs-6 center-align">
-                        <SignInWithGoogle />
                     </div>
                 </div>
             </div>
