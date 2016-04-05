@@ -30,7 +30,7 @@ Container = React.createClass({
                 userid: res.userid,
                 firstName: res.firstName,
                 lastName: res.lastName,
-                isTrainer: res.isTrainer,
+                isTrainer: (res.isTrainer == "true"),
                 email: res.email,
                 phone: res.phone,
                 sports: res.sports,
@@ -49,10 +49,30 @@ Container = React.createClass({
         this.serverRequest.abort();
     },
  
-    render: function() { return (
+    render: function() { 
+        var comments = [];
+        var name;
+        var rating;
+        var comment;
+        for (var i = 0; i < this.state.comments.length; i++) {
+            name = this.state.comments[i]["name"];
+            rating = this.state.comments[i]["rating"];
+            comment = this.state.comments[i]["comment"];
+            comments.push(
+                <div><span className="font-bold"> Name: </span> {name}
+                <br /><span className="font-bold"> Rating: </span> {rating} stars
+                <br /><span className="font-bold"> Review: </span> {comment}
+                <br /><br /></div>
+           );
+
+        }
+
+
+        return (
     
         <div className="container">
             <div className="row">
+                <hr/>
                 <div className="profile_left col-md-8">
                     <span className="font-bold">Name: </span> {this.state.firstName} {this.state.lastName}
                     <br />
@@ -72,7 +92,7 @@ Container = React.createClass({
                         <br />
                     </div>
                 </div>
-                <div className="profile_right col-md-2">
+                <div hidden={!this.state.isTrainer} className="profile_right col-md-2">
                     <h2>${this.state.price}</h2>
                     <a href="../book" className="btn btn-lg btn-danger btn-block">Book Now!</a>
                 </div>
@@ -91,14 +111,7 @@ Container = React.createClass({
                     <br />
                     <hr />
                     <span className="font-bold"><h2>Reviews </h2></span>
-                    <br />
-                    <span className="font-bold"> Name: </span> Beyonce
-                    <br />
-                    <span className="font-bold"> Rating: </span> 4 Stars
-                    <br />
-                    <span className="font-bold"> Review: </span> Mike is very helpful.
-                    <br />
-                    <br />
+                    {comments}
                 </div>
             </div>
 

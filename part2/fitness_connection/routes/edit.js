@@ -9,8 +9,6 @@ var url = 'mongodb://localhost:27017/fitness_connection';
 
 /* GET users edit page */
 router.get('/:id', function(req, res, next) {
-    // Fetch user profile picture and existing data here.
-    
     res.render('page', { pageName: 'edit' });
 });
 
@@ -19,27 +17,47 @@ router.post('/savechanges/:id', function(req, res) {
     console.log("Saving changes made by the user.");
     console.log(req.body);
 
+    var insertDocument = function(db, callback) {
+   db.collection('users').insertOne( {
+    "userid": 5, 
+    "firstName": "first",
+                    "lastName": "name",
+                    "isTrainer": true,
+                    "sports": "temp sports",
+                    "email": "",
+                    "phone": "",
+                    "location": "",
+                    "experience": "",
+                    "price": 0,
+                    "education": "",
+                    "workexp": ""
+
+  }, function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the restaurants collection.");
+    callback();
+  });
+};
+
+
     var updateUser = function(db, callback) {
        db.collection('users').updateOne(
-          { "userid" : req.params.id },
+          { "userid" : Number(req.body.userid) },
           {
             $set: { "firstName": req.body.firstName,
                     "lastName": req.body.lastName,
                     "isTrainer": req.body.isTrainer,
-                    "profilePictureURL": req.body.profilePictureURL,
                     "sports": req.body.sports,
+                    "email": req.body.email,
+                    "phone": req.body.phone,
                     "location": req.body.location,
-                    "experience": req.body.experience
-                    //"trainerProfile.$.price": req.body.price,
-                    //"trainerProfile.$.availability": req.body.availability,
-                    //"trainerProfile.$.education": req.body.education,
-                    //"trainerProfile.$.workexp": req.body.workexp,
-                    //"trainerProfile.$.awards": req.body.awards,
-                    //"trainerProfile.$.otherinfo": req.body.otherinfo
+                    "experience": req.body.experience,
+                    "price": req.body.price,
+                    "education": req.body.education,
+                    "workexp": req.body.workexp
                   },
           }, function(err, results) {
           console.log("No error");
-          console.log(results);
           callback();
        });
     };

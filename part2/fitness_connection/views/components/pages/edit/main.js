@@ -12,28 +12,31 @@ Container = React.createClass({
           isTrainer = true;
         }
 
+
+        document.getElementById("savedtitle").style.visibility = "visible";
+
         var url = window.location.href;
         var id = url.split('/').pop();
 
         var data = {
-            "userid": id,
-            "firstName": document.getElementById('firstName').value,
-            "lastName": document.getElementById('lastName').value,
+            "userid": this.state.userid,
+            "firstName": document.getElementById('firstName').value || document.getElementById('firstName').placeholder,
+            "lastName": document.getElementById('lastName').value || document.getElementById('lastName').placeholder,
             "isTrainer": isTrainer,
-            "email": document.getElementById('email').value,
-            "phone": document.getElementById('phone').value,
-            "sports": document.getElementById('sports').value,
-            "location": document.getElementById('location').value,
-            "experience": document.getElementById('experience').value,
-            "price": document.getElementById('price').value,
-            "education": document.getElementById('education').value,
-            "workexp": document.getElementById('workexp').value,
+            "email": document.getElementById('email').value || document.getElementById('email').placeholder,
+            "phone": document.getElementById('phone').value || document.getElementById('phone').placeholder,
+            "sports": document.getElementById('sports').value || document.getElementById('sports').placeholder,
+            "location": document.getElementById('location').value || document.getElementById('location').placeholder,
+            "experience": document.getElementById('experience').value || document.getElementById('experience').placeholder,
+            "price": document.getElementById('price').value || document.getElementById('price').placeholder,
+            "education": document.getElementById('education').value || document.getElementById('education').placeholder,
+            "workexp": document.getElementById('workexp').value || document.getElementById('workexp').placeholder,
         }
 
         // Submit form via jQuery/AJAX
         $.ajax({
             type: 'POST',
-            url: './savechanges/' + id, // ADD USER ID HERE
+            url: './savechanges/' + this.state.userid, // ADD USER ID HERE
             data: data
         })
         .done(function(data) {
@@ -65,6 +68,8 @@ Container = React.createClass({
     },
  
     componentDidMount: function() {
+        document.getElementById("savedtitle").style.visibility = "hidden";
+
         var url = window.location.href;
         var id = url.split('/').pop();
         this.serverRequest = $.get('../users/fetch/' + id, function (res) {
@@ -93,7 +98,35 @@ Container = React.createClass({
 
 
     render: function() { 
-       
+        var radiohtml;
+        if (this.state.isTrainer == "false") {
+            radiohtml = <div><div className="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="isAthlete" defaultChecked/>
+                    Athlete
+                </label>
+            </div>
+            <div className="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="isTrainer" />
+                    Trainer
+                </label>
+            </div></div>;
+        } else if (this.state.isTrainer == "true") {
+            radiohtml = <div><div className="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="isAthlete"/>
+                    Athlete
+                </label>
+            </div>
+            <div className="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="isTrainer" defaultChecked/>
+                    Trainer
+                </label>
+            </div></div>;
+        }
+
         return (
     
         <div className="container">
@@ -102,7 +135,8 @@ Container = React.createClass({
                 <div className="col-xs-2">
                     <button onClick={this.saveChanges} type="button" className="btn btn-primary  btn-block">Save Changes</button>
                 </div>
-                <div className="col-xs-4">
+                <div id="savedtitle" className="col-xs-4">
+                  <span><b>Saved!</b></span>
                 </div>
             </div>
             <hr/>
@@ -145,18 +179,7 @@ Container = React.createClass({
             <div className="row">
                 <h3>Are you a Trainer or an Athlete?</h3>
                 <div className="col-xs-3">
-                    <div className="radio">
-                        <label>
-                            <input type="radio" name="optionsRadios" id="isAthlete" value="false" defaultChecked />
-                            Athlete
-                        </label>
-                    </div>
-                    <div className="radio">
-                        <label>
-                        <input type="radio" name="optionsRadios" id="isTrainer" value="true" />
-                        Trainer
-                      </label>
-                    </div>
+                    {radiohtml}
                 </div>
             </div>
         
@@ -164,7 +187,7 @@ Container = React.createClass({
             <div className="row">
                 <h3>Price to Charge in $</h3>
                 <div className="col-xs-3">
-                    <input id="price" type="number" className="form-control" />
+                    <input id="price" type="number" className="form-control" placeholder={this.state.price}/>
                 </div>
                 <div className="col-xs-9">  
                 </div>
@@ -176,12 +199,12 @@ Container = React.createClass({
                 <h3>Resume</h3>
                 <div className="col-xs-12">
                     <b>Education</b>
-                    <textarea id="education" type="text" className="form-control" name="education">
+                    <textarea id="education" type="text" className="form-control" name="education" placeholder={this.state.education}>
                     </textarea>
                 </div>
                 <div className="col-xs-12">
                     <b>Work Experience</b>
-                    <textarea id="workexp" type="text" className="form-control" name="workexperience">
+                    <textarea id="workexp" type="text" className="form-control" name="workexperience" placeholder={this.state.workexp}>
                     </textarea>
                 </div>
             </div>

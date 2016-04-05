@@ -16,19 +16,8 @@ router.get('/fetch/:id', function(req, res, next) {
     console.log("Fetching for userid: " + req.params.id);
     var users = [];
     var findUser = function(db, callback) {
-       var cursor = db.collection('users').find({"userid" : 3} );
+       var cursor = db.collection('users').find({"userid" : Number(req.params.id)} );
        return cursor;
-       cursor.each(function(err, doc) {
-          assert.equal(err, null);
-          if (doc != null) {
-             return doc;
-             users.push(doc);
-          } else {
-             //console.log('No user by that id');
-             callback();
-          }
-       });
-       return users;
     };
     
     MongoClient.connect(url, function(err, db) {
@@ -38,6 +27,7 @@ router.get('/fetch/:id', function(req, res, next) {
       });
 
       temp.toArray(function(err, docs) {
+          console.log(docs);
           if (docs.length != 0) {
               res.send(docs[0]);
           } else {
