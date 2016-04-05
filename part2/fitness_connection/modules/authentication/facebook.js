@@ -3,7 +3,7 @@ var config = require('../../config/authentication'),
     FacebookStrategy = require('passport-facebook').Strategy,
     User = require('../../models/user');
 
-function createNewUser(profile, token) {
+function createNewUser(profile, token, done) {
     // if there is no user found with that facebook id, create them
     var newUser = new User();
 
@@ -39,7 +39,7 @@ function authenticationSucceed(token, refreshToken, profile, done) {
             if (user) {
                 return done(null, user); // user found, return that user
             } else {
-                createNewUser(profile, token);
+                createNewUser(profile, token, done);
             }
         });
     });
