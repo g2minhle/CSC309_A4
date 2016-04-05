@@ -8,16 +8,23 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     isTrainer: Boolean,
-    profilePictureURL: String,
     email: String,
     phone: String,
     sports: String,
     experience: String,
     location: String,
-    trainerProfile: {        
-        type: mongoose.Schema.ObjectId,
-        ref: 'Trainer'
-    },
+    price: Number,
+    rating: Number,
+    education: String,
+    workexp: String,
+    comments: [
+        {
+            from: Number,
+            name: String,
+            comment: String,
+            rating: Number,
+        }
+    ],
     authentication: {
         facebookAuth: {
             type: mongoose.Schema.ObjectId,

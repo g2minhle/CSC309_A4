@@ -10,27 +10,6 @@ var url = 'mongodb://localhost:27017/fitness_connection';
 /* GET users edit page */
 router.get('/:id', function(req, res, next) {
     // Fetch user profile picture and existing data here.
-    var findUser = function(db, callback) {
-       var cursor = db.collection('users').find( {"userid": req.params.id});
-       cursor.each(function(err, doc) {
-          assert.equal(err, null);
-          if (doc != null) {
-             console.dir(doc);
-          } else {
-             console.log('No user by that id');
-             callback();
-          }
-       });
-    };
-    
-    MongoClient.connect(url, function(err, db) {
-      assert.equal(null, err);
-      findUser(db, function() {
-          db.close();
-      });
-    });
-    
-    // Take data that was fetched and add it to page. (TODO)
     
     res.render('page', { pageName: 'edit' });
 });
@@ -59,7 +38,8 @@ router.post('/savechanges/:id', function(req, res) {
                     //"trainerProfile.$.otherinfo": req.body.otherinfo
                   },
           }, function(err, results) {
-          console.log(err);
+          console.log("No error");
+          console.log(results);
           callback();
        });
     };

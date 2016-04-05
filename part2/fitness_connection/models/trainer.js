@@ -13,8 +13,6 @@ var trainerSchema = mongoose.Schema({
     rating: Number,
     education: String,
     workexp: String,
-    awards: String,
-    otherinfo: String,
     comments: [
         {
             type: mongoose.Schema.ObjectId,
