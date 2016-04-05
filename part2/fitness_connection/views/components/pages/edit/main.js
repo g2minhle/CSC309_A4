@@ -1,6 +1,7 @@
 var
 React = require('react'),
 ReactDOM = require('react-dom'),
+NormalNavBar = require('../../normalNavBar'),
     
 Container = React.createClass({
     saveChanges: function(e) {
@@ -217,6 +218,7 @@ Container = React.createClass({
 Index = React.createClass({
     render: function() { return (
         <div>
+            <NormalNavBar />
             <Container />
         </div>
 

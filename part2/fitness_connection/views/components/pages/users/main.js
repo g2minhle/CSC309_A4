@@ -1,6 +1,7 @@
 var
 React = require('react'),
 ReactDOM = require('react-dom'),
+NormalNavBar = require('../../normalNavBar'),
 
 Container = React.createClass({
     getInitialState: function() {
@@ -123,9 +124,9 @@ Container = React.createClass({
 Index = React.createClass({
     render: function() { return (
         <div>
+            <NormalNavBar/>                
             <Container />
         </div>
-
     ); }
 });
 
