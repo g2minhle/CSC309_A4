@@ -15,30 +15,6 @@ router.get('/:id', function(req, res, next) {
 /* GET save changes on edit page. */
 router.post('/savechanges/:id', function(req, res) {
     console.log("Saving changes made by the user.");
-    console.log(req.body);
-
-    var insertDocument = function(db, callback) {
-   db.collection('users').insertOne( {
-    "userid": 5, 
-    "firstName": "first",
-                    "lastName": "name",
-                    "isTrainer": true,
-                    "sports": "temp sports",
-                    "email": "",
-                    "phone": "",
-                    "location": "",
-                    "experience": "",
-                    "price": 0,
-                    "education": "",
-                    "workexp": ""
-
-  }, function(err, result) {
-    assert.equal(err, null);
-    console.log("Inserted a document into the restaurants collection.");
-    callback();
-  });
-};
-
 
     var updateUser = function(db, callback) {
        db.collection('users').updateOne(
