@@ -3,11 +3,17 @@ React = require('react'),
 AlternativeAuthMethods = require('./alternativeAuthMethods');
 
 module.exports = SignInForm = React.createClass({
-    render: function() {  return (
+    render: function() {
+        var flash_message = null;
+        if( this.props.flash_message
+            && this.props.flash_message.trim().length > 0){
+            flash_message = <div className="col-xs-12">
+                <div class="alert alert-danger">{this.props.flash_message}</div>
+            </div>;
+        }        
+        return (                    
         <div className="row">
-            <div className="col-xs-12">
-                {this.props.flash_message}
-            </div>
+            {flash_message}
             <div className="col-xs-12">
                 <form action="/auth/local/login" method="post">
                     <link rel="stylesheet" href="/statics/css/components/auth.css"/>

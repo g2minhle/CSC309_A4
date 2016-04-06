@@ -28,6 +28,9 @@ function createNewUser(req, email, password, done) {
                 // set the user's local credentials
                 newUser.authentication.localAuth.email = email;
                 newUser.authentication.localAuth.password = newUser.generateHash(password);
+                newUser.location = req.body.location;
+                newUser.firstName = req.body.firstName;
+                newUser.lastName = req.body.lastName; 
 
                 // save the user
                 newUser.save(function(err) {

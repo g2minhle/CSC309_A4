@@ -11,11 +11,8 @@ function createNewUser(profile, token, done) {
     // set all of the facebook information in our user model
     // set the users facebook id
     newUser.authentication.facebookAuth.id = profile.id;
-    // we will save the token that facebook provides to the user                   
-    newUser.authentication.facebookAuth.token = token;
     // look at the passport user profile to see how names are returned
-    newUser.firstName = profile.name.givenName;
-    newUser.lastName = profile.name.familyName;
+    newUser.firstName = profile.displayName;
 
     // save our user to the database
     newUser.save(function(err) {
