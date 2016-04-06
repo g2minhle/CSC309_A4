@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var MongoClient = require('mongodb').MongoClient;
-
 var mongoose = require('mongoose');
-var assert = require('assert');
-var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/fitness_connection';
 
 var Trainer = require('../models/user');
@@ -58,28 +54,6 @@ router.get('/:keyword', function(req, res, next) {
     insertDummy();
     findTrainers();
 
-   // var temp = findTrainer(function() {
-    //  console.log(temp);
-
-   // });
-
-    //console.log(temp);
-     /* temp.toArray(function(err, docs) {
-          console.log(docs);
-          if (docs.length != 0) {
-              res.send(docs[0]);
-          } else {
-              res.send({});
-          }
-      });
-
-    });
-
-    for (var i = 0; i < recommendations.length; i++) {
-          console.log(recommend[i].firstName);
-        }
-
-    res.send(recommend);*/
 });    
 
 module.exports = router;

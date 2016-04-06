@@ -8,6 +8,7 @@ function loadRouters(app) {
     app.use('/edit', require('./edit'));
     app.use('/search', require('./searchResults'));
     app.use('/index', require('./recommendations'));
+    app.use('/admin', require('./admin'));
 }
 
 function routersForErrorHandlers(app) {
