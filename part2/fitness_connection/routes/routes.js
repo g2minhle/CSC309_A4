@@ -7,6 +7,7 @@ function loadRouters(app) {
     app.use('/auth', require('./auth'));
     app.use('/edit', require('./edit'));
     app.use('/search', require('./searchResults'));
+    app.use('/index', require('./recommendations'));
 }
 
 function routersForErrorHandlers(app) {

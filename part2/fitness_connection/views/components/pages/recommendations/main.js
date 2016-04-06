@@ -6,18 +6,32 @@ NormalNavBar = require('../../normalNavBar'),
 Container = React.createClass({
     getInitialState: function() {
         return {
-            matches: -1
+            recommendations: [{
+                                userid: -1,
+                                firstName: '',
+                                lastName: '',
+                                isTrainer: true,
+                                email: '',
+                                phone: '',
+                                sports: '',
+                                experience: '',
+                                location: '',
+                                price: 0,
+                                rating: 0,
+                                education: '',
+                                workexp: '',
+                                comments: []
+                                }]
         };
         
     },
  
     componentDidMount: function() {
         var url = window.location.href;
-        var keyword = url.split('=').pop();
 
-        this.serverRequest = $.get('./search/' + keyword, function (res) {
+        this.serverRequest = $.get('./index/getRecommendations', function (res) {
             console.log("setting state");
-            this.setState( { matches: res });
+            this.setState( { recommendations: res });
 
         }.bind(this));
     },
@@ -29,15 +43,7 @@ Container = React.createClass({
  
     render: function() { 
 
-        var trainerHTML = "";
-
-        if (this.state.matches == -1) 
-            trainerHTML = "";
-        else if (this.state.matches.length == 0)
-            trainerHTML = "<h1>No Results</h1>";
-        else { 
-
-            trainerHTML = this.state.matches.map(function(trainer) {
+        var trainerHTML = this.state.recommendations.map(function(trainer) {
             return (
                     <div className="trainer_bio">
                         <div className="row">
@@ -73,19 +79,11 @@ Container = React.createClass({
                         </div>
                     </div>
                     );
-            });
-        }
-
-        var url = window.location.href;
-        var keyword = url.split('=').pop();
-
-        // Sanitize to prevent XSS or injection
-        keyword.replace("<", "");
-        keyword.replace(">", "");
+        });
 
         return (
                     <div className="container">
-                    <h1>Search results for: {keyword}</h1>
+                    <h1>Recommended Personal Trainers Near You</h1>
                     {trainerHTML}
                     </div>
                 );
