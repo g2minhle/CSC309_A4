@@ -17,8 +17,7 @@ var userSchema = mongoose.Schema({
     workexp: String,
     comments: [
         {
-            from: Number,
-            name: String,
+            from: String,
             comment: String,
             rating: Number,
         }
