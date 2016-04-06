@@ -1,6 +1,6 @@
 var database = require('mongoose'),
     config = require('../config/database');
-
+// connect to database
 module.exports = {
     init: function() {
         database.connect(config.url);
@@ -8,18 +8,20 @@ module.exports = {
 };
 // wiping database
 //drop database so all data is wiped off
-
-database.connection.on('open', function(){
+function wipe(db){
+mongoose.connection.on('open', function(){
 	module.exports = {
 		init: function(){
 			mongoose.connection.db.dropDatabase(function(err) {
 				console.log(err)
+
 			})
     	}
 	}
-});
+})};
 //closing connection
-database.connection.on('open', function(){
+function close(db){
+mongoose.connection.on('open', function close(){
 	module.exports = {
 		init: function(){
 			mongoose.connection.close(function(err) {
@@ -27,14 +29,17 @@ database.connection.on('open', function(){
 			})
     	}
 	}
-});
+})};
+// finding selected documents and making collection
+
+
 // exporting data from one database to another 
 var query;
 var collection;
 var firstDatabase;
 var otherDatabase
 
-init:function(query,collection,firstDatabase,otherDatabase){
+function export(query,collection,firstDatabase,otherDatabase){
 	firstDatabase.collection.find({query}).forEach(function(d)
 		{ firstDatabase.getSiblingDB(otherDatabase)
 			[collection].insert(d)});
@@ -45,7 +50,7 @@ init:function(query,collection,firstDatabase,otherDatabase){
 
 //importing data from one database to another 
 
-init:function(query,collection,firstDatabase,otherDatabase){
+function import(query,collection,firstDatabase,otherDatabase){
 	otherDatabase.collection.find({query}).forEach(function(d)
 		{ otherDatabase.getSiblingDB(firstDatabase)
 			[collection].insert(d)});
