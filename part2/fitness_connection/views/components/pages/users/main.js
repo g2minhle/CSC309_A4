@@ -31,7 +31,7 @@ Container = React.createClass({
                 userid: res.userid,
                 firstName: res.firstName,
                 lastName: res.lastName,
-                isTrainer: (res.isTrainer == "true"),
+                isTrainer: res.isTrainer,
                 email: res.email,
                 phone: res.phone,
                 sports: res.sports,
