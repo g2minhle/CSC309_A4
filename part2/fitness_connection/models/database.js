@@ -31,28 +31,41 @@ database.connection.on('open', function(){
 	}
 })};
 
-// exporting data from one database to another 
-var query;
-var collection;
-var firstDatabase;
-var otherDatabase
+var spawn = require('child_process').spawn;
+var localFile;
+var db;
+function import(db){
+// import
+  collection.insert(docs,function(err, result) {
+    var args = ['--db', db]
+      , mongodump = spawn('/usr/local/bin/mongodump', args);
+    mongodump.stdout.on('data', function (data) {
+      console.log('stdout: ' + data);
+    });
+    mongodump.stderr.on('data', function (data) {
+      console.log('stderr: ' + data);
+    });
+    mongodump.on('exit', function (code) {
+      console.log('mongodump exited with code ' + code);
+    });
+  });
+  }
 
-function export(query,collection,firstDatabase,otherDatabase){
-	firstDatabase.collection.find({query}).forEach(function(d)
-		{ firstDatabase.getSiblingDB(otherDatabase)
-			[collection].insert(d)});
-	firstDatabase.collection.find({query}).forEach(function(d){
-	});
-	firstDatabase.collection.remove({query});
-}
-
-//importing data from one database to another 
-
-function import(query,collection,firstDatabase,otherDatabase){
-	otherDatabase.collection.find({query}).forEach(function(d)
-		{ otherDatabase.getSiblingDB(firstDatabase)
-			[collection].insert(d)});
-	otherDatabase.collection.find({query}).forEach(function(d){
-	});
-	otherDatabase.collection.remove({query});
-}
+//export
+function import(db,localFile){
+  var localFile;
+  var db;
+  collection.insert(docs,function(err, result) {
+    var args = ['--db', db,localFile]
+      , mongoretore = spawn('/usr/local/bin/mongorestore', args);
+    mongoretore.stdout.on('data', function (data) {
+      console.log('stdout: ' + data);
+    });
+    mongoretore.stderr.on('data', function (data) {
+      console.log('stderr: ' + data);
+    });
+    mongoretore.on('exit', function (code) {
+      console.log('mongorestore exited with code ' + code);
+    });
+  });
+  }
