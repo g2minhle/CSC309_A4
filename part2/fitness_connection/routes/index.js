@@ -1,7 +1,5 @@
 var
-    express = require('express'),
-    passport = require('passport'),
-    authCore = require('../modules/authentication/authCore');
+    express = require('express');
 
 var
     router = express.Router();
