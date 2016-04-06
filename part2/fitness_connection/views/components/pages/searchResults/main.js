@@ -34,7 +34,7 @@ Container = React.createClass({
         if (this.state.matches == -1) 
             trainerHTML = "";
         else if (this.state.matches.length == 0)
-            trainerHTML = "<h1>No Results</h1>";
+            trainerHTML = "No Results";
         else { 
 
             trainerHTML = this.state.matches.map(function(trainer) {
