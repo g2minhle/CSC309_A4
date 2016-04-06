@@ -26,11 +26,9 @@ var userSchema = mongoose.Schema({
     authentication: {
         facebookAuth: {
             id: String,
-            token: String,
-            email: String,
         },
         localAuth: {
-            email: String,
+            email: String,  
             password: String
         }
     },
