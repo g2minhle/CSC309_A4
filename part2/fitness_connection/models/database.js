@@ -9,7 +9,7 @@ module.exports = {
 // wiping database
 //drop database so all data is wiped off
 
-mongoose.connection.on('open', function(){
+database.connection.on('open', function(){
 	module.exports = {
 		init: function(){
 			mongoose.connection.db.dropDatabase(function(err) {
@@ -19,7 +19,7 @@ mongoose.connection.on('open', function(){
 	}
 });
 //closing connection
-mongoose.connection.on('open', function(){
+database.connection.on('open', function(){
 	module.exports = {
 		init: function(){
 			mongoose.connection.close(function(err) {
