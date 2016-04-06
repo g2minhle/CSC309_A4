@@ -28,10 +28,9 @@ Container = React.createClass({
     },
  
     componentDidMount: function() {
-        var url = window.location.href;
 
         this.serverRequest = $.get('./admin/getAllUsers', function (res) {
-            console.log("setting state");
+
             this.setState( { users: res });
 
         }.bind(this));
@@ -52,10 +51,10 @@ Container = React.createClass({
                  <div className="row">
                         <div className="user_entry">    
                             <ul>
-                                <li>{user._id}</li>
-                                <li>{user.firstName} {user.lastName}</li>
-                                <li><button className="btn btn-primary">Change password</button></li>
-                                <li><button className="btn btn-danger">Remove user</button></li>
+                                <li className="col-md-3">{user._id}</li>
+                                <li className="col-md-3">{user.firstName} {user.lastName}</li>
+                                <li className="col-md-2"><button className="btn btn-primary">Change password</button></li>
+                                <li className="col-md-3"><button className="btn btn-danger">Remove user</button></li>
                             </ul>
                         </div>
                     </div>
@@ -69,62 +68,19 @@ Container = React.createClass({
 
             <div>
             <ul className="nav nav-tabs" role="tablist">
-                <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Manage users</a></li>
-                <li role="presentation" className="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Manage database</a></li>
+                <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Manage users</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Manage database</a></li>
             </ul>
 
             <div className="tab-content">
-                <div role="tabpanel" className="tab-pane" id="home">
-                    <div className="row">
-                        <nav>
-                            <ul className="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                <div role="tabpanel" className="tab-pane active" id="home">
                     <div className="row">
                         <ul>
-                            <li>Internal User ID</li>
-                            <li>User ID</li>
-                            <li>User's Name</li>
+                            <li className="col-md-3">Internal User ID</li>
+                            <li className="col-md-3">User's Name</li>
                         </ul>
                     </div>                        
                     {userHTML}
-                    <div className="row">
-                        <nav>
-                            <ul className="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
             </div>
