@@ -21,7 +21,7 @@ database.connection.on('open', function(){
 })};
 //closing connection
 function close(){
-database.connection.on('open', function close(){
+database.connection.on('open', function(){
 	module.exports = {
 		init: function(){
 			mongoose.connection.close(function(err) {
@@ -30,8 +30,6 @@ database.connection.on('open', function close(){
     	}
 	}
 })};
-// finding selected documents and making collection
-
 
 // exporting data from one database to another 
 var query;
