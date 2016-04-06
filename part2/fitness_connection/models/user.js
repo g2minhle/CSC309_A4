@@ -3,8 +3,6 @@ var bcrypt = require('bcrypt-nodejs'),
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
-    id: mongoose.Schema.ObjectId,
-    userid: Number,
     firstName: String,
     lastName: String,
     isTrainer: Boolean,
@@ -27,7 +25,7 @@ var userSchema = mongoose.Schema({
     ],
     authentication: {
         facebookAuth: {
-            facebookId: String,
+            id: String,
             token: String,
             email: String,
         },
@@ -42,13 +40,15 @@ var userSchema = mongoose.Schema({
 /*
  * 
  */
-userSchema.methods.generateHash = function(password) {    
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 /*
  * 
  */
-userSchema.methods.validPassword = function(password) {    
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.authentication.localAuth.password);
 };
 
 /*

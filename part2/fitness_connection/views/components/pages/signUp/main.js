@@ -14,6 +14,8 @@ SignUp = React.createClass({
                     <div className="col-xs-6 col-xs-offset-3">                         
                         <SignUpForm flash_message={this.props.flash_message}/>            
                     </div>
+                </div>
+                <div className="row">   
                     <div className="col-xs-6 col-xs-offset-3 right-align">
                         <a href="/auth/signIn">Already have an account? Sign in Here</a>
                     </div>

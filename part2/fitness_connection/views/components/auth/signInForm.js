@@ -32,7 +32,6 @@ module.exports = SignInForm = React.createClass({
                         <div className="col-xs-4">
                             <div className="checkbox">
                                 <label>
-                                    <input value="remember-me" type="checkbox"/> Remember me 
                                 </label>
                             </div>
                         </div>

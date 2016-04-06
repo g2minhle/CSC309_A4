@@ -1,9 +1,10 @@
-var config = require('../../config/authentication'),
-    passport = require('passport'),
+var passport = require('passport'),    
     FacebookStrategy = require('passport-facebook').Strategy,
+    config = require('../../config/authentication'),
     User = require('../../models/user');
 
-function createNewUser(profile, token, done) {
+function createNewUser(profile, token, done) {    
+    console.log(profile);
     // if there is no user found with that facebook id, create them
     var newUser = new User();
 
@@ -13,7 +14,8 @@ function createNewUser(profile, token, done) {
     // we will save the token that facebook provides to the user                   
     newUser.authentication.facebookAuth.token = token;
     // look at the passport user profile to see how names are returned
-    newUser.authentication.facebookAuth.name = profile.name.givenName + ' ' + profile.name.familyName;
+    newUser.firstName = profile.name.givenName;
+    newUser.lastName = profile.name.familyName;
 
     // save our user to the database
     newUser.save(function(err) {

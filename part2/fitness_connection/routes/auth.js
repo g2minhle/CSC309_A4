@@ -5,7 +5,7 @@ var
     router = express.Router(),
 
     options = {
-        successRedirect: '/home',
+        successRedirect: '/index',
         failureRedirect: '/auth/signIn',
         failureFlash: true
     };
