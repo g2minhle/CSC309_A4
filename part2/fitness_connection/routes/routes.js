@@ -5,7 +5,6 @@ function loadRouters(app) {
     app.use('/', require('./index'));
     app.use('/users', require('./users'));
     app.use('/auth', require('./auth'));
-    app.use('/edit', require('./edit'));
     app.use('/search', require('./searchResults'));
     app.use('/index', require('./recommendations'));
     app.use('/admin', require('./admin'));

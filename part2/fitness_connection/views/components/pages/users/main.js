@@ -26,7 +26,7 @@ Container = React.createClass({
     componentDidMount: function() {
         var url = window.location.href;
         var id = url.split('/').pop();
-        this.serverRequest = $.get('./fetch/' + id, function (res) {
+        this.serverRequest = $.get('/users/' + id, function (res) {
             this.setState({
                 userid: res.userid,
                 firstName: res.firstName,

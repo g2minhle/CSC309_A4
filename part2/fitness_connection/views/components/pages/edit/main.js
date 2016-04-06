@@ -8,22 +8,18 @@ Container = React.createClass({
         //make api request here to save changes
         e.preventDefault();
 
-        var isTrainer = false;
+        /*var isTrainer = false;
         if (document.getElementById('isTrainer').checked) {
           isTrainer = true;
-        }
+        }*/
 
 
         document.getElementById("savedtitle").style.visibility = "visible";
 
-        var url = window.location.href;
-        var id = url.split('/').pop();
-
         var data = {
-            "userid": this.state.userid,
             "firstName": document.getElementById('firstName').value || document.getElementById('firstName').placeholder,
             "lastName": document.getElementById('lastName').value || document.getElementById('lastName').placeholder,
-            "isTrainer": isTrainer,
+            //"isTrainer": isTrainer,
             "email": document.getElementById('email').value || document.getElementById('email').placeholder,
             "phone": document.getElementById('phone').value || document.getElementById('phone').placeholder,
             "sports": document.getElementById('sports').value || document.getElementById('sports').placeholder,
@@ -37,7 +33,7 @@ Container = React.createClass({
         // Submit form via jQuery/AJAX
         $.ajax({
             type: 'POST',
-            url: './savechanges/' + this.state.userid, // ADD USER ID HERE
+            url: '/users/' + this.state.userid, // ADD USER ID HERE
             data: data
         })
         .done(function(data) {
@@ -73,9 +69,9 @@ Container = React.createClass({
 
         var url = window.location.href;
         var id = url.split('/').pop();
-        this.serverRequest = $.get('../users/fetch/' + id, function (res) {
+        this.serverRequest = $.get('/users/' + id, function (res) {
             this.setState({
-                userid: res.userid,
+                userid: res._id,
                 firstName: res.firstName,
                 lastName: res.lastName,
                 isTrainer: res.isTrainer,
