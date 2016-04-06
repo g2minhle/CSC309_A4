@@ -2,6 +2,7 @@ var
 React = require('react'),
 ReactDOM = require('react-dom'),
 NormalNavBar = require('../../normalNavBar'),
+Utilities = require('../../../../modules/utilities/utilities'),
 
 Container = React.createClass({
     getInitialState: function() {
@@ -55,11 +56,7 @@ Container = React.createClass({
                                     <li><span className="font-bold">Name: </span> {trainer.firstName} {trainer.lastName}</li>
                                     <li><span className="font-bold">Sport: </span> {trainer.sports}</li>
                                     <li><span className="font-bold">Rating: </span>
-                                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                        <span className="glyphicon glyphicon-star-empty" aria-hidden="true"></span> (2 Reviews)
+                                        {Utilities.getStarCode(trainer.rating)} ({trainer.comments.length} Reviews)
                                     </li>
 
                                     <li><span className="font-italic">

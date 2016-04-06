@@ -29,7 +29,7 @@ router.get('/getRecommendations', function(req, res, next) {
         userid: i,
         firstName: names[i],
         price: 50.00,
-        rating: 5
+        rating: 2
         });
 
         newTrainer.save(function(err) {
