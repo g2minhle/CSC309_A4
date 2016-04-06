@@ -3,22 +3,15 @@ React = require('react'),
 ReactDOM = require('react-dom'),
 NormalNavBar = require('../../normalNavBar'),
     
-Container = React.createClass({
+UserEditPageContent = React.createClass({
     saveChanges: function(e) {
         //make api request here to save changes
         e.preventDefault();
 
-        var isTrainer = false;
-        if ($('#input_isTrainer').is(':checked')) {
-          isTrainer = true;
-        }
-
-
-
         var data = {
             "firstName": document.getElementById('firstName').value || document.getElementById('firstName').placeholder,
             "lastName": document.getElementById('lastName').value || document.getElementById('lastName').placeholder,
-            "isTrainer": isTrainer,
+            "isTrainer": $('#input_isTrainer').is(':checked'),
             "email": document.getElementById('email').value || document.getElementById('email').placeholder,
             "phone": document.getElementById('phone').value || document.getElementById('phone').placeholder,
             "sports": document.getElementById('sports').value || document.getElementById('sports').placeholder,
@@ -32,7 +25,7 @@ Container = React.createClass({
         // Submit form via jQuery/AJAX
         $.ajax({
             type: 'POST',
-            url: '/users/' + this.state.userid, // ADD USER ID HERE
+            url: '/users/' + this.props.userId, // ADD USER ID HERE
             data: data
         })
         .done(function(data) {
@@ -64,10 +57,7 @@ Container = React.createClass({
     },
  
     componentDidMount: function() {
-
-        var url = window.location.href;
-        var id = url.split('/').pop();
-        this.serverRequest = $.get('/users/' + id, function (res) {
+        this.serverRequest = $.get('/users/' + this.props.userId, function (res) {
             if (res.isTrainer) {
                 $('#input_isTrainer').attr('checked', true);                
             } else { 
@@ -197,20 +187,20 @@ Container = React.createClass({
     ); }
 }),
 
-Index = React.createClass({
+UserEditPage = React.createClass({
     render: function() { return (
         <div>
             <NormalNavBar />
-            <Container />
+            <UserEditPageContent userId={userId}/>
         </div>
 
     ); }
 });
 
-
+userId = $('#userId').text();
 
 ReactDOM.render(
-    <Index/>,
+    <UserEditPage userId={userId}/>,
     document.getElementById('page-content')
 );
 

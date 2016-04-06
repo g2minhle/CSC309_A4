@@ -1,78 +1,57 @@
 var
     express = require('express'),
-    assert = require('assert');
+    auth = require('../modules/authentication/authCore'),
+    usersControllers = require('../modules/users/usersControllers');
 
 var
-    router = express.Router(),
-    auth = require('../modules/authentication/authCore'),
-    User = require('../models/user');
+    router = express.Router();
 
-/* GET users listing. */
-router.get('/myAccount', function(req, res) {
-    res.redirect('/users/editPage/' + req.session.passport.user);
-});
-
-
-/* GET users listing. */
-router.get('/infoPage/:id', function(req, res) {
-    res.render('page', { pageName: 'users' });
-});
-
-/* GET users edit page */
-router.get('/editPage/:id',
+router.get('/pages/my/infoPage',
     auth.requireLogIn,
-    auth.requireOwnership,
-    function(req, res, next) {
-        res.render('page', { pageName: 'edit' });
+    function(req, res) {
+        res.redirect('/users/pages/infoPage/' + req.session.passport.user);
     }
 );
 
-router.get('/:id', function(req, res) {
-    User.findOne({ '_id': req.params.id },
-        function(err, user) {
-            // if there is an error, stop everything and return that
-            // ie an error connecting to the database
-            if (err) res.status(500).json({});
+router.get('/pages/my/editPage',
+    auth.requireLogIn,
+    function(req, res) {
+        res.redirect('/users/pages/editPage/' + req.session.passport.user);
+    }
+);
 
-            // if the user is found, then log them in
-            if (user) {
-                res.status(200).json(user);
-            } else {
-                res.status(404).json({});
-            }
+router.get('/pages/infoPage/:id',
+    function(req, res) {
+        res.render('pageWithUserId', {
+            pageName: 'users',
+            userId: req.params.id
         });
-});
+    }
+);
 
-/* GET save changes on edit page. */
+router.get('/pages/editPage/:id',
+    auth.requireLogIn,
+    auth.requireOwnership,
+    function(req, res, next) {
+        res.render('pageWithUserId', {
+            pageName: 'edit',
+            userId: req.params.id
+        });
+    }
+);
+
+router.get('/:id',
+    function(req, res) {
+        usersControllers.getUser(req, res, req.params.id);
+    }
+);
+
 router.post('/:id',
     auth.requireLogIn,
     auth.requireOwnership,
     function(req, res) {
-        console.log("Saving changes made by the user.");
-        User.findOneAndUpdate({ '_id': req.params.id },
-            {
-                "firstName": req.body.firstName,
-                "lastName": req.body.lastName,
-                "isTrainer": req.body.isTrainer,
-                "sports": req.body.sports,
-                "email": req.body.email,
-                "phone": req.body.phone,
-                "location": req.body.location,
-                "experience": req.body.experience,
-                "price": req.body.price,
-                "education": req.body.education,
-                "workexp": req.body.workexp
-            },
-            function(err, user) {
-                if (err) res.status(500).json({});
-
-                if (user) {
-                    res.status(200).json(user);
-                } else {
-                    res.status(404).json({});
-                }                
-            }
-        );
-    });
+        usersControllers.updateUser(req, res, req.params.id);
+    }
+);
 
 module.exports = router;
