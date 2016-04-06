@@ -1,9 +1,11 @@
 var
-React = require('react'),
-ReactDOM = require('react-dom'),
-NormalNavBar = require('../../normalNavBar'),
+    React = require('react'),
+    ReactDOM = require('react-dom'),
+    NormalNavBar = require('../../normalNavBar'),
+    RatingReview = require('../../ratingReview/ratingReview');
 
-Container = React.createClass({
+var
+UserInfoPageContent = React.createClass({
     getInitialState: function() {
         return {
             userid: -1,
@@ -16,17 +18,14 @@ Container = React.createClass({
             experience: '',
             location: '',
             price: 0,
-            rating: 0,
             education: '',
             workexp: '',
             comments: []
         };
     },
  
-    componentDidMount: function() {
-        var url = window.location.href;
-        var id = url.split('/').pop();
-        this.serverRequest = $.get('/users/' + id, function (res) {
+    componentDidMount: function() {        
+        this.serverRequest = $.get('/users/' + this.props.userId, function (res) {
             this.setState({
                 userid: res.userid,
                 firstName: res.firstName,
@@ -38,7 +37,6 @@ Container = React.createClass({
                 experience: res.experience,
                 location: res.location,
                 price: res.price,
-                rating: res.rating,
                 education: res.education,
                 workexp: res.workexp,
                 comments: res.comments
@@ -51,32 +49,12 @@ Container = React.createClass({
     },
  
     render: function() { 
-        var comments = [];
-        var name;
-        var rating;
-        var comment;
-        for (var i = 0; i < this.state.comments.length; i++) {
-            name = this.state.comments[i]["name"];
-            rating = this.state.comments[i]["rating"];
-            comment = this.state.comments[i]["comment"];
-            comments.push(
-                <div><span className="font-bold"> Name: </span> {name}
-                <br /><span className="font-bold"> Rating: </span> {rating} stars
-                <br /><span className="font-bold"> Review: </span> {comment}
-                <br /><br /></div>
-           );
-
-        }
-
-
         return (
     
         <div className="container">
-            <div className="row">
-                <hr/>
+            <h1>{this.state.firstName} {this.state.lastName}</h1>
+            <div className="row">                
                 <div className="profile_left col-md-8">
-                    <span className="font-bold">Name: </span> {this.state.firstName} {this.state.lastName}
-                    <br />
                     <span className="font-bold">Location: </span> {this.state.location}
                     <br />
                     <span className="font-bold">Email: </span> {this.state.email}
@@ -86,8 +64,6 @@ Container = React.createClass({
                     <br />
                     <div hidden={!this.state.isTrainer}>
                         <span className="font-bold">Sport(s): </span> {this.state.sports}
-                        <br />
-                        <span className="font-bold">Rating: {this.state.rating} stars </span>
                         <br />
                         <span className="font-bold"> Experience: </span> {this.state.experience}
                         <br />
@@ -101,7 +77,7 @@ Container = React.createClass({
             <hr />
             <div hidden={!this.state.isTrainer} className="row">
                 <div className="profile_left col-md-8">
-                    <span className="font-bold"><h2>Resume </h2></span>
+                    <span className="font-bold"><h2>Resume</h2></span>
                     <span className="font-bold"> Education: </span> 
                     <br />
                     {this.state.education}
@@ -111,9 +87,10 @@ Container = React.createClass({
                     {this.state.workexp}
                     <br />
                     <hr />
-                    <span className="font-bold"><h2>Reviews </h2></span>
-                    {comments}
                 </div>
+                <div className="col-md-12">
+                    <RatingReview userId={this.props.userId}/>
+                </div>                
             </div>
 
         </div>
@@ -121,16 +98,18 @@ Container = React.createClass({
     ); }
 }),
 
-Index = React.createClass({
+UserInfoPage = React.createClass({
     render: function() { return (
         <div>
             <NormalNavBar/>                
-            <Container />
+            <UserInfoPageContent userId={this.props.userId}/>
         </div>
     ); }
-});
+}),
+
+userId = $('#userId').text();
 
 ReactDOM.render(
-    <Index/>,
+    <UserInfoPage userId={userId}/>,
     document.getElementById('page-content')
 );
