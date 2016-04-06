@@ -29,6 +29,19 @@ router.get('/getAllUsers', function(req, res, next) {
     }
     
     findTrainers();
+});
+
+router.get('/updateInbox', function(req, res, next) {
+
+    console.log("updating Inbox");
+    console.log("Performing search for all messages...");
+    // Find all messages
+    var findMessages = function() {
+       Messages.find({}, function (err, docs) {
+        res.send(docs);
+      });
+    }
+    findMessages();
 });    
 
 module.exports = router;
