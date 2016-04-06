@@ -13,8 +13,13 @@ var Trainer = require('../models/user');
 /* GET search results */
 router.get('/', function(req, res, next) {
 
-    //res.render('page', { pageName: 'users' });
+  console.log('got the request here');
+  res.render('page', { pageName: 'searchResults' });
+});
 
+router.get('/:keyword', function(req, res, next) {
+
+    console.log("doing search");
     // Insert dummy trainer data
     var insertDummy = function() {
 
@@ -38,19 +43,18 @@ router.get('/', function(req, res, next) {
     }
     
     // /search?keyword=<keyword>
-    console.log("Performing search for keyword: " + req.query.keyword);
+    console.log("Performing search for keyword: " + req.params.keyword);
 
 
     // Do smart search algo based on user location and trainer location for recommended trainers
     var findTrainers = function() {
-       Trainer.find({}, function(err, users) {
-        if (err) console.log(err);
+       Trainer.find({"location" : req.body.location }, function (err, docs) {
 
-        for (var i = 0; i < users.length; i++) {
-          console.log(users[i].firstName);
-        }
-      })
-    };
+        // Get top 3 hits
+        var recommendations = docs.slice(0, 3);
+        res.send(recommendations);
+      });
+    }
     
     insertDummy();
     findTrainers();
@@ -70,7 +74,13 @@ router.get('/', function(req, res, next) {
           }
       });
 
-    });*/
+    });
+
+    for (var i = 0; i < recommendations.length; i++) {
+          console.log(recommend[i].firstName);
+        }
+
+    res.send(recommend);*/
 });    
 
 module.exports = router;
