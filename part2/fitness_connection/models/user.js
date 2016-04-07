@@ -14,7 +14,7 @@ var userSchema = mongoose.Schema({
     price: Number,
     rating: Number,
     education: String,
-    workexp: String,
+    workexp: String,    
     comments: [
         {
             from: String,
@@ -27,10 +27,11 @@ var userSchema = mongoose.Schema({
             id: String,
         },
         localAuth: {
-            email: String,  
+            email: String,
             password: String
         }
     },
+    isAdmin: Boolean,
     dateCreated: { type: Date, default: Date.now }
 });
 

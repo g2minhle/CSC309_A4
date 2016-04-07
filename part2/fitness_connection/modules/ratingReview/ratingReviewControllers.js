@@ -23,7 +23,7 @@ module.exports = {
     addReview: function(req, res, fromUserId) {
         console.log("Saving changes made by the user.");
         User.findOneAndUpdate(
-            { '_id': req.params.id },
+            { '_id': req.body.userId },
             { 
                 "$push":{
                     "comments": {

@@ -13,7 +13,7 @@ router.get('/:id',
     }
 );
 
-router.post('/:id',
+router.post('/',
     auth.requireLogIn,
     function(req, res) {
         ratingReviewControllers.addReview(req, res, req.session.passport.user);

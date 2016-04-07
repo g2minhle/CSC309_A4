@@ -3,12 +3,15 @@ var express = require('express'),
 
 function loadRouters(app) {
     app.use('/', require('./index'));
-    app.use('/users', require('./users'));
     app.use('/auth', require('./auth'));
-    app.use('/search', require('./searchResults'));
     app.use('/index', require('./recommendations'));
-    app.use('/admin', require('./admin'));
+    
+    app.use('/users', require('./users'));
+    app.use('/search', require('./searchResults'));
     app.use('/ratingReview', require('./ratingReview'));
+    app.use('/booking', require('./booking'));
+    
+    app.use('/admin', require('./admin'));
 }
 
 function routersForErrorHandlers(app) {

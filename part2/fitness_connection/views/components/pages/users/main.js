@@ -50,45 +50,97 @@ UserInfoPageContent = React.createClass({
  
     render: function() { 
         return (
-    
         <div className="container">
-            <h1>{this.state.firstName} {this.state.lastName}</h1>
             <div className="row">                
-                <div className="profile_left col-md-8">
-                    <span className="font-bold">Location: </span> {this.state.location}
-                    <br />
-                    <span className="font-bold">Email: </span> {this.state.email}
-                    <br />
-                    <span className="font-bold">Phone #: </span> {this.state.phone}
-                    <br />
-                    <br />
-                    <div hidden={!this.state.isTrainer}>
-                        <span className="font-bold">Sport(s): </span> {this.state.sports}
-                        <br />
-                        <span className="font-bold"> Experience: </span> {this.state.experience}
-                        <br />
-                    </div>
-                </div>
-                <div hidden={!this.state.isTrainer} className="profile_right col-md-2">
-                    <h2>${this.state.price}</h2>
-                    <a href="../book" className="btn btn-lg btn-danger btn-block">Book Now!</a>
+                <div className="col-xs-12">
+                    <h1>{this.state.firstName} {this.state.lastName}</h1>
                 </div>
             </div>
-            <hr />
-            <div hidden={!this.state.isTrainer} className="row">
-                <div className="profile_left col-md-8">
-                    <span className="font-bold"><h2>Resume</h2></span>
-                    <span className="font-bold"> Education: </span> 
-                    <br />
-                    {this.state.education}
-                    <br />
-                    <span className="font-bold"> Work Experience: </span>
-                    <br /> 
-                    {this.state.workexp}
-                    <br />
+            <div className="row">                
+                <div className="col-xs-10">
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Location:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.location}
+                        </div>
+                    </div>       
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Email:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.email}
+                        </div>
+                    </div>      
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Phone:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.phone}
+                        </div>
+                    </div>   
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Sport(s):</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.sports}
+                        </div>
+                    </div>   
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Experience:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.experience}
+                        </div>
+                    </div>                          
+                </div>
+                <div hidden={!this.state.isTrainer} className="profile_right col-xs-2">
+                    <h2>${this.state.price}</h2>
+                    <a 
+                        href={'/booking/pages/createBooking/' + this.props.userId} 
+                        className="btn btn-lg btn-danger btn-block">
+                        Book Now!
+                    </a>
+                </div>
+                <div className="col-xs-12">
                     <hr />
                 </div>
-                <div className="col-md-12">
+            </div>
+            <div hidden={!this.state.isTrainer} className="row">
+                <div className="col-xs-12">
+                    <h2>Resume</h2> 
+                </div>
+                <div className="col-xs-12">
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Education:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.education}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Work Experience:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.workexp}
+                        </div>
+                    </div>                    
+                    <hr />
+                </div>
+            </div>   
+            <div hidden={!this.state.isTrainer} className="row">                
+                <div className="col-xs-12">
                     <RatingReview userId={this.props.userId}/>
                 </div>                
             </div>
