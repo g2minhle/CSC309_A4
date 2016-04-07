@@ -2,6 +2,7 @@ var
 React = require('react'),
 ReactDOM = require('react-dom'),
 NormalNavBar = require('../../normalNavBar'),
+ChangePasswordModal = require('./changePasswordModal'),
 Utilities = require('../../../../modules/utilities/utilities'),
 
 Container = React.createClass({
@@ -40,9 +41,9 @@ Container = React.createClass({
 
         this.serverRequest.abort();
     },
- 
-    render: function() { 
 
+
+    render: function() { 
 
         var userHTML = "";
 
@@ -53,7 +54,8 @@ Container = React.createClass({
                             <ul>
                                 <li className="col-md-3">{user._id}</li>
                                 <li className="col-md-3">{user.firstName} {user.lastName}</li>
-                                <li className="col-md-2"><button className="btn btn-primary">Change password</button></li>
+                                <ChangePasswordModal id="changePasswordModal" userId={user._id }/>                                
+                                <li className="col-md-2"><button className="btn btn-primary" onClick={function () { $('#changePasswordModal').modal('show'); }}>Change password</button></li>
                                 <li className="col-md-3"><button className="btn btn-danger">Remove user</button></li>
                             </ul>
                         </div>
@@ -65,7 +67,8 @@ Container = React.createClass({
         return (
         <div className="container">
         <h1>Fitness Connection Admin page</h1>
-
+        <button onClick={this.openChangePasswordModal}>Change password</button>
+                                
             <div>
             <ul className="nav nav-tabs" role="tablist">
                 <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Manage users</a></li>
