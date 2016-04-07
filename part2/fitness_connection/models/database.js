@@ -30,15 +30,14 @@ database.connection.on('open', function(){
     	}
 	}
 })};
-
+//import 
 var spawn = require('child_process').spawn;
 var localFile;
 var db;
-function import(db){
-// import
-  collection.insert(docs,function(err, result) {
-    var args = ['--db', db]
-      , mongodump = spawn('/usr/local/bin/mongodump', args);
+var path;
+function export(db,path){
+    var args = ['--db', db, '--out', path]
+      , mongodump = spawn(path+'/mongodump', args);
     mongodump.stdout.on('data', function (data) {
       console.log('stdout: ' + data);
     });
@@ -51,13 +50,12 @@ function import(db){
   });
   }
 
-//export
-function import(db,localFile){
+//..
+function import(db,localFilePath,localFileName){
   var localFile;
   var db;
-  collection.insert(docs,function(err, result) {
-    var args = ['--db', db,localFile]
-      , mongoretore = spawn('/usr/local/bin/mongorestore', args);
+    var args = ['--db', db,localFilePath/localFileName]
+      , mongoretore = spawn(localFilePath +'/mongorestore', args);
     mongoretore.stdout.on('data', function (data) {
       console.log('stdout: ' + data);
     });
@@ -66,6 +64,6 @@ function import(db,localFile){
     });
     mongoretore.on('exit', function (code) {
       console.log('mongorestore exited with code ' + code);
-    });
-  });
+    }
+    );
   }
