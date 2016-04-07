@@ -1,9 +1,11 @@
 var
-React = require('react'),
-ReactDOM = require('react-dom'),
-NormalNavBar = require('../../normalNavBar'),
+    React = require('react'),
+    ReactDOM = require('react-dom'),
+    NormalNavBar = require('../../normalNavBar'),
+    RatingReview = require('../../ratingReview/ratingReview');
 
-Container = React.createClass({
+var
+UserInfoPageContent = React.createClass({
     getInitialState: function() {
         return {
             userid: -1,
@@ -16,17 +18,14 @@ Container = React.createClass({
             experience: '',
             location: '',
             price: 0,
-            rating: 0,
             education: '',
             workexp: '',
             comments: []
         };
     },
  
-    componentDidMount: function() {
-        var url = window.location.href;
-        var id = url.split('/').pop();
-        this.serverRequest = $.get('/users/' + id, function (res) {
+    componentDidMount: function() {        
+        this.serverRequest = $.get('/users/' + this.props.userId, function (res) {
             this.setState({
                 userid: res.userid,
                 firstName: res.firstName,
@@ -38,7 +37,6 @@ Container = React.createClass({
                 experience: res.experience,
                 location: res.location,
                 price: res.price,
-                rating: res.rating,
                 education: res.education,
                 workexp: res.workexp,
                 comments: res.comments
@@ -51,69 +49,100 @@ Container = React.createClass({
     },
  
     render: function() { 
-        var comments = [];
-        var name;
-        var rating;
-        var comment;
-        for (var i = 0; i < this.state.comments.length; i++) {
-            name = this.state.comments[i]["name"];
-            rating = this.state.comments[i]["rating"];
-            comment = this.state.comments[i]["comment"];
-            comments.push(
-                <div><span className="font-bold"> Name: </span> {name}
-                <br /><span className="font-bold"> Rating: </span> {rating} stars
-                <br /><span className="font-bold"> Review: </span> {comment}
-                <br /><br /></div>
-           );
-
-        }
-
-
         return (
-    
         <div className="container">
-            <div className="row">
-                <hr/>
-                <div className="profile_left col-md-8">
-                    <span className="font-bold">Name: </span> {this.state.firstName} {this.state.lastName}
-                    <br />
-                    <span className="font-bold">Location: </span> {this.state.location}
-                    <br />
-                    <span className="font-bold">Email: </span> {this.state.email}
-                    <br />
-                    <span className="font-bold">Phone #: </span> {this.state.phone}
-                    <br />
-                    <br />
-                    <div hidden={!this.state.isTrainer}>
-                        <span className="font-bold">Sport(s): </span> {this.state.sports}
-                        <br />
-                        <span className="font-bold">Rating: {this.state.rating} stars </span>
-                        <br />
-                        <span className="font-bold"> Experience: </span> {this.state.experience}
-                        <br />
-                    </div>
-                </div>
-                <div hidden={!this.state.isTrainer} className="profile_right col-md-2">
-                    <h2>${this.state.price}</h2>
-                    <a href="../book" className="btn btn-lg btn-danger btn-block">Book Now!</a>
+            <div className="row">                
+                <div className="col-xs-12">
+                    <h1>{this.state.firstName} {this.state.lastName}</h1>
                 </div>
             </div>
-            <hr />
-            <div hidden={!this.state.isTrainer} className="row">
-                <div className="profile_left col-md-8">
-                    <span className="font-bold"><h2>Resume </h2></span>
-                    <span className="font-bold"> Education: </span> 
-                    <br />
-                    {this.state.education}
-                    <br />
-                    <span className="font-bold"> Work Experience: </span>
-                    <br /> 
-                    {this.state.workexp}
-                    <br />
-                    <hr />
-                    <span className="font-bold"><h2>Reviews </h2></span>
-                    {comments}
+            <div className="row">                
+                <div className="col-xs-10">
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Location:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.location}
+                        </div>
+                    </div>       
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Email:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.email}
+                        </div>
+                    </div>      
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Phone:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.phone}
+                        </div>
+                    </div>   
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Sport(s):</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.sports}
+                        </div>
+                    </div>   
+                    
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Experience:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.experience}
+                        </div>
+                    </div>                          
                 </div>
+                <div hidden={!this.state.isTrainer} className="profile_right col-xs-2">
+                    <h2>${this.state.price}</h2>
+                    <a 
+                        href={'/booking/pages/createBooking/' + this.props.userId} 
+                        className="btn btn-lg btn-danger btn-block">
+                        Book Now!
+                    </a>
+                </div>
+                <div className="col-xs-12">
+                    <hr />
+                </div>
+            </div>
+            <div hidden={!this.state.isTrainer} className="row">
+                <div className="col-xs-12">
+                    <h2>Resume</h2> 
+                </div>
+                <div className="col-xs-12">
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Education:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.education}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-xs-2 right-align">
+                            <b>Work Experience:</b>
+                        </div>
+                        <div className="col-xs-10">
+                            {this.state.workexp}
+                        </div>
+                    </div>                    
+                    <hr />
+                </div>
+            </div>   
+            <div hidden={!this.state.isTrainer} className="row">                
+                <div className="col-xs-12">
+                    <RatingReview userId={this.props.userId}/>
+                </div>                
             </div>
 
         </div>
@@ -121,16 +150,18 @@ Container = React.createClass({
     ); }
 }),
 
-Index = React.createClass({
+UserInfoPage = React.createClass({
     render: function() { return (
         <div>
             <NormalNavBar/>                
-            <Container />
+            <UserInfoPageContent userId={this.props.userId}/>
         </div>
     ); }
-});
+}),
+
+userId = $('#userId').text();
 
 ReactDOM.render(
-    <Index/>,
+    <UserInfoPage userId={userId}/>,
     document.getElementById('page-content')
 );
