@@ -22,9 +22,21 @@ module.exports = NormalNavBar = React.createClass({
                 </form>
                 <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/users/myAccount">
-                            My Account &nbsp;
-                            <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <a href="/booking/pages/my/bookings">
+                            View my bookings &nbsp;
+                            <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/users/pages/my/infoPage">
+                            View my profile &nbsp;
+                            <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/users/pages/my/editPage">
+                            Edit my profile &nbsp;
+                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </a>
                     </li>
                     <li>
