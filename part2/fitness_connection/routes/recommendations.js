@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/getRecommendations', function(req, res, next) {
     // Do smart search algo based on user location and trainer location for recommended trainers
-    Trainer.find({ "location": req.body.location }, function(err, docs) {
+    Trainer.find({ "location": "Toronto"}, function(err, docs) {
 
         // Get top 3 hits
         var recommendations = docs.slice(0, 3);
