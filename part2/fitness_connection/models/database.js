@@ -48,7 +48,7 @@ function export(db,path){
       console.log('mongodump exited with code ' + code);
     });
   });
-  }
+  };
 
 //..
 function import(db,localFilePath,localFileName){
@@ -66,4 +66,4 @@ function import(db,localFilePath,localFileName){
       console.log('mongorestore exited with code ' + code);
     }
     );
-  }
+  };
