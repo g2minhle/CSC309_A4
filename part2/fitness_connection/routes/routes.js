@@ -10,6 +10,7 @@ function loadRouters(app) {
     app.use('/search', require('./searchResults'));
     app.use('/ratingReview', require('./ratingReview'));
     app.use('/booking', require('./booking'));
+    app.use('/test', require('./test'));
     
     app.use('/admin', require('./admin'));
 }
