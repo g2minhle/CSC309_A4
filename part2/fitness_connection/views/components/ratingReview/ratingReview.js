@@ -1,7 +1,7 @@
 var 
 React = require('react'),
 Comment = require('./comment'),
-CommentForm = require('./CommentForm');
+CommentForm = require('./commentForm');
 
 var 
 CommentList = React.createClass({

@@ -2,7 +2,7 @@ var
 React = require('react'),
 ReactDOM = require('react-dom'),
 NormalNavBar = require('../../normalNavBar'),
-BookingListing = require('./BookingListing');
+BookingListing = require('./bookingListing');
     
 var
 BookingListingPage = React.createClass({
