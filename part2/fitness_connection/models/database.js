@@ -1,6 +1,6 @@
 var database = require('mongoose'),
     config = require('../config/database');
- connect to database
+//connect to database
 module.exports = {
     init: function() {
 			database.connect(config.url);
