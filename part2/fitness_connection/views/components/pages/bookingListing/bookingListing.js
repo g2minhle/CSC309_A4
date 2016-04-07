@@ -1,6 +1,6 @@
 var 
 React = require('react'),
-Booking = require('./Booking');
+Booking = require('./booking');
 
 var 
 BookingList = React.createClass({
